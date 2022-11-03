@@ -176,6 +176,7 @@ class TrabalhoController extends Controller
         $trabalho->proponente_id = $proponente->id;
         $trabalho->evento_id = $request->editalId;
         $trabalho->status = 'Rascunho';
+        $trabalho->conflitosInteresse = null;
 
         $stringKeys = ['titulo','linkGrupoPesquisa', 'linkLattesEstudante','pontuacaoPlanilha','anexoProjeto',
                         'anexoPlanilhaPontuacao', 'anexoLattesCoordenador'];
@@ -204,6 +205,9 @@ class TrabalhoController extends Controller
       }
       if(!(is_null($request->linkGrupo))){
         $trabalho->linkGrupoPesquisa = $request->linkGrupo;
+      }
+      if(!(is_null($request->conflitosInteresse))){
+        $trabalho->conflitosInteresse = $request->conflitosInteresse;
       }
 
         //Anexos do projeto
@@ -848,6 +852,10 @@ class TrabalhoController extends Controller
             $trabalho = Trabalho::find($id);
             $trabalho->ods()->sync($request->ods);
 
+            if (is_null($request->conflitosInteresse)) {
+                $trabalho->conflitosInteresse = null;
+            };
+
             DB::beginTransaction();
             if (!$trabalho) {
                 return back()->withErrors(['Proposta não encontrada']);
@@ -1216,6 +1224,7 @@ class TrabalhoController extends Controller
         $projeto->evento_id = $request->editalId;
         $projeto->status = 'submetido';
         $projeto->proponente_id = $proponente->id;
+        $projeto->conflitosInteresse = $request->conflitosInteresse;
 
         // Salvando anexos no storage
         $projeto->save();
