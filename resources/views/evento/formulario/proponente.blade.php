@@ -85,7 +85,26 @@
             </div>
           @endif
 
-
+          <div class="col-md-2">
+            <br>
+            <label for="conflitosInteresse" class="col-form-label font-tam" style="font-weight: bold">{{ __('Conflitos de interesse: ') }}</label>
+          </div>
+          <div class="col-md-10">
+            <br>
+            <select multiple class="form-control @error('conflitosInteresse') is-invalid @enderror"
+                data-role="tagsinput" id="conflitosInteresse" name="conflitosInteresse[]" >
+                @if(!(is_null(old('conflitosInteresse'))))
+                @foreach(old('conflitosInteresse') as $conflito)
+                  <option value="{{$conflito}}"></option>
+                @endforeach
+                @endif
+            </select>
+            @error('conflitosInteresse')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+          </div>
 
 
 
