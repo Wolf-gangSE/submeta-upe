@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="{{ asset('js/jquery-3.4.1.min.js')}}"></script>
     <script src="{{ asset('js/jquery-mask-plugin.js')}}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script> --}}
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -38,6 +40,26 @@
         padding-top: 1.5rem;
         padding-bottom: 1rem;
         text-align: center;
+      }
+      
+      .bootstrap-tagsinput .tag{
+        margin-right: 2px;
+        color: #ffffff;
+        background:rgb(0, 140, 255);
+        padding: 3px 7px;
+        border-radius: 3px;
+      }
+
+      .badge {
+        margin-right: 2px;
+        color: #ffffff;
+        background:rgb(0, 140, 255);
+        padding: 3px 7px;
+        border-radius: 3px;
+        font-size: 15px;
+      }
+      .bootstrap-tagsinput {
+        width: 100%;
       }
 
       .styleRodape_Imagem_lmts {
