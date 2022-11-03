@@ -140,6 +140,15 @@
                                     <a style="color: #4D4D4D;">{{$trabalho->modalidade}}</a>
                                 </div>
                             @endif
+                            @if($trabalho->conflitosInteresse != null)
+                                <div class="col-md-12">
+                                    <br>
+                                    <b style="color: #4D4D4D;">Conflitos de Interesse: </b>
+                                    @foreach($trabalho->conflitosInteresse as $conflito)
+                                        <span class="badge">{{ $conflito }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
