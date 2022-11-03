@@ -49,6 +49,13 @@
             </span>
             @enderror
           </div>
+
+          <div class="form-group col-md-6">
+            <label for="conflitosInteresse">Conflitos de Interesse</label>
+            @foreach($projeto->conflitosInteresse as $conflito)
+              <label class="label label-info">{{ $conflito }}</label>
+            @endforeach
+          </div>
           
         </div>
     </div>
