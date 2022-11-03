@@ -42,6 +42,9 @@ class Trabalho extends Model
       'area_tematica_id',
   ];
 
+  protected $casts = [
+    'conflitosInteresse' => 'array',
+  ];
 
 
   public function recurso(){
