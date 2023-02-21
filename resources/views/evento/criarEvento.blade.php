@@ -560,7 +560,7 @@
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="modeloDocumento">Anexar arquivo com os modelos de documentos do edital:</label>
+                    <label for="modeloDocumento">Anexar modelo de proposta de trabalho:<span style="color:red; font-weight:bold;">*</span></label>
                     @if(old('modeloDocumentoPreenchido') != null)
                     <a id="modeloDocumentoTemp" href="{{ route('baixar.evento.temp', ['nomeAnexo' => 'modeloDocumento' ])}}">Arquivo atual</a>
                     @endif
@@ -575,9 +575,43 @@
                 </div>
             </div>
             
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="pdfRecurso">Anexar modelo do formulário de recurso:<span style="color:red; font-weight:bold;">*</span></label>
+                    @if(old('pdfRecursoPreenchido') != null)
+                    <a id="pdfRecursoTemp" href="{{ route('baixar.evento.temp', ['nomeAnexo' => 'docRecurso' ])}}">Arquivo atual</a>
+                    @endif
+                    <input type="hidden" id="pdfRecursoPreenchido" name="pdfRecursoPreenchido" value="{{ old('pdfRecursoPreenchido') }}">
+                    <input type="file" accept=".pdf" class="form-control-file pdf @error('pdfRecurso') is-invalid @enderror" name="pdfRecurso" value="{{ old('pdfRecurso') }}" id="pdfRecurso" onchange="exibirAnexoTemp(this)">
+                    <small>O arquivo selecionado deve ser no formato PDF de até 2mb.</small>
+                    @error('pdfRecurso')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="pdfRelatorio">Anexar modelo do relatório técnico/pedagógico:</label>
+                    @if(old('pdfRelatorioPreenchido') != null)
+                    <a id="pdfRelatorioTemp" href="{{ route('baixar.evento.temp', ['nomeAnexo' => 'docRelatorio' ])}}">Arquivo atual</a>
+                    @endif
+                    <input type="hidden" id="pdfRelatorioPreenchido" name="pdfRelatorioPreenchido" value="{{ old('pdfRelatorioPreenchido') }}">
+                    <input type="file" accept=".pdf" class="form-control-file pdf @error('pdfRelatorio') is-invalid @enderror" name="pdfRelatorio" value="{{ old('pdfRelatorio') }}" id="pdfRelatorio" onchange="exibirAnexoTemp(this)">
+                    <small>O arquivo selecionado deve ser no formato PDF de até 2mb.</small>
+                    @error('pdfFormAvalRelatorio')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="pdfFormAvalExterno">Formulário de avaliação do relatório:</label>
+                    <label for="pdfFormAvalRelatorio">Anexar formulário de avaliação do relatório técnico/pedagógico:</label>
                     @if(old('pdfFormAvalRelatorioPreenchido') != null)
                     <a id="pdfFormAvalRelatorioTemp" href="{{ route('baixar.evento.temp', ['nomeAnexo' => 'formAvaliacaoPlano' ])}}">Arquivo atual</a>
                     @endif
@@ -785,6 +819,14 @@
         if (file.id === "docTutorial") {
             var docTutorialPreenchido = document.getElementById('docTutorialPreenchido');
             docTutorialPreenchido.value = "sim";
+        }
+        if (file.id === "pdfRelatorio") {
+            var pdfRelatorioPreenchido = document.getElementById('pdfRelatorioPreenchido');
+            pdfRelatorioPreenchido.value = "sim";
+        }
+        if (file.id === "pdfRecurso") {
+            var pdfRecursoPreenchido = document.getElementById('pdfRecursoPreenchido');
+            pdfRecursoPreenchido.value = "sim";
         }
     }
 

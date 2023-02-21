@@ -139,6 +139,9 @@ class EventoController extends Controller
                 'inicioProjeto'       => ['required', 'date'],
                 'fimProjeto'          => ['required', 'date'],
                 'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null), 'max:255'],
+                'pdfRelatorio'      => [($request->pdfRelatorioPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
+                'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
+                'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
                 //'modeloDocumento'     => [],
             ]);
         }
@@ -171,6 +174,9 @@ class EventoController extends Controller
             'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
             'inicioProjeto'       => ['required', 'date', 'after:yesterday'],
             'fimProjeto'          => ['required', 'date', 'after_or_equal:fimSubmissao'],
+            'pdfRelatorio'      => [($request->pdfRelatorioPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
+            'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
+            'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
             //'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
         ]);
         
@@ -292,6 +298,24 @@ class EventoController extends Controller
 
             $evento->docTutorial = $path . $nome;
         }
+        if(isset($request->pdfRecurso)){
+            $pdfRecurso = $request->pdfRecurso;
+            $extension = $pdfRecurso->extension();
+            $path = 'pdfRecurso/' . $evento->id . '/';
+            $nome = "recurso" . "." . $extension;
+            Storage::putFileAs($path, $pdfRecurso, $nome);
+
+            $evento->docRecurso = $path . $nome;
+        }
+        if(isset($request->pdfRelatorio)){
+            $pdfRelatorio = $request->pdfRelatorio;
+            $extension = $pdfRelatorio->extension();
+            $path = 'pdfRelatorio/' . $evento->id . '/';
+            $nome = "relatorio" . "." . $extension;
+            Storage::putFileAs($path, $pdfRelatorio, $nome);
+
+            $evento->docRelatorio = $path . $nome;
+        }
 
         $evento->update();
 
@@ -359,6 +383,16 @@ class EventoController extends Controller
             $pasta = 'docTutorial/' . $eventoTemp->id;
             $nome = "documento tutorial" . "." . $extension;
             $eventoTemp->docTutorial = Storage::putFileAs($pasta, $request->docTutorial, $nome);
+        }
+        if(!(is_null($request->pdfRecurso)) ) {
+            $pasta = 'pdfRecurso/' . $eventoTemp->id;
+            $nome = "recurso" . "." . $extension;
+            $eventoTemp->docRecurso = Storage::putFileAs($pasta, $request->pdfRecurso, $nome);
+        }
+        if(!(is_null($request->pdfRelatorio)) ) {
+            $pasta = 'pdfRelatorio/' . $eventoTemp->id;
+            $nome = "relatorio" . "." . $extension;
+            $eventoTemp->docRelatorio = Storage::putFileAs($pasta, $request->pdfRelatorio, $nome);
         }
 
         $eventoTemp->update();
@@ -516,7 +550,6 @@ class EventoController extends Controller
                 'fimProjeto'          => ['required', 'date'],
                 'docTutorial'     => ['file', 'mimes:zip,doc,docx,pdf', 'max:2048'],
                 'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null), 'max:255'],
-
             ]);
         }
 
