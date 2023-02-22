@@ -265,7 +265,7 @@
                             </div>
                             <div class="form-group" style="width: 100%">
                               <div class="d-flex justify-content-between" style="width: 100%">
-                                <div><h5 style=" font-size:17px; margin-top:9px">Outros<br>documentos</h5></div>
+                                <div><h5 style=" font-size:17px; margin-top:9px">Modelo de<br>Proposta</h5></div>
                                 <div>
                                     <a class="btn btn-light" href="{{route('baixar.modelos', ['id' => $evento->id])}}" target="_new" style="" >
                                     <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px"><br>
@@ -275,7 +275,55 @@
                             </div>
                           </div>
                           @else
-                          <h6 style="color: #909090">O criador do edital não disponibilizou modelos</h6>
+                          <h6 style="color: #909090">O criador do edital não disponibilizou modelo de proposta</h6>
+                        @endif
+                        </div>
+
+                        <div class="col-md-12"><hr></div>
+
+                        <div class="col-md-12">
+                          @if($evento->docRelatorio != null)
+                          <div class="d-flex justify-content-left align-items-center" style="margin-bottom: -15px">
+                            <div style="margin-right:10px; margin-top:-15px">
+                              <img class="" src="{{asset('img/icons/icon_modelo.png')}}" alt="" width="40px">
+                            </div>
+                            <div class="form-group" style="width: 100%">
+                              <div class="d-flex justify-content-between" style="width: 100%">
+                                <div><h5 style=" font-size:17px; margin-top:9px">Modelo de<br>Relatório</h5></div>
+                                <div>
+                                    <a class="btn btn-light" href="{{route('baixar.relatorio', ['id' => $evento->id])}}" target="_new" style="" >
+                                    <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px"><br>
+                                    Baixar</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          @else
+                          <h6 style="color: #909090">O criador do edital não disponibilizou modelo de relatório</h6>
+                        @endif
+                        </div>
+
+                        <div class="col-md-12"><hr></div>
+
+                        <div class="col-md-12">
+                          @if($evento->docRecurso != null)
+                          <div class="d-flex justify-content-left align-items-center" style="margin-bottom: -15px">
+                            <div style="margin-right:10px; margin-top:-15px">
+                              <img class="" src="{{asset('img/icons/icon_modelo.png')}}" alt="" width="40px">
+                            </div>
+                            <div class="form-group" style="width: 100%">
+                              <div class="d-flex justify-content-between" style="width: 100%">
+                                <div><h5 style=" font-size:17px; margin-top:9px">Modelo de<br>Recurso</h5></div>
+                                <div>
+                                    <a class="btn btn-light" href="{{route('baixar.recurso', ['id' => $evento->id])}}" target="_new" style="" >
+                                    <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px"><br>
+                                    Baixar</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          @else
+                          <h6 style="color: #909090">O criador do edital não disponibilizou modelo de recurso</h6>
                         @endif
                         </div>
 

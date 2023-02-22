@@ -223,6 +223,8 @@ Route::group(['middleware' => ['isTemp', 'auth', 'verified']], function () {
 
 Route::get('/baixar/edital/{id}', 'EventoController@baixarEdital')->name('baixar.edital');
 Route::get('/baixar/modelos/{id}', 'EventoController@baixarModelos')->name('baixar.modelos');
+Route::get('/baixar/relatorio/{id}', 'EventoController@baixarRelatorio')->name('baixar.relatorio');
+Route::get('/baixar/recurso/{id}', 'EventoController@baixarRecurso')->name('baixar.recurso');
 
 Route::prefix('usuarios')->name('admin.')->group(function () {
     //######### Rotas da administração dos usuários ####################
