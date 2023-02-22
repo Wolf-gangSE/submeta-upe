@@ -611,7 +611,7 @@
 
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="pdfFormAvalRelatorio">Anexar formulário de avaliação do relatório técnico/pedagógico:</label>
+                    <label for="pdfFormAvalRelatorio">Anexar formulário de avaliação do relatório:</label>
                     @if(old('pdfFormAvalRelatorioPreenchido') != null)
                     <a id="pdfFormAvalRelatorioTemp" href="{{ route('baixar.evento.temp', ['nomeAnexo' => 'formAvaliacaoPlano' ])}}">Arquivo atual</a>
                     @endif

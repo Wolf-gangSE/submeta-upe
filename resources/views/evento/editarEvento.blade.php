@@ -692,7 +692,7 @@
        
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="modeloDocumento">Arquivo com os modelos de documentos do edital:</label>
+                    <label for="modeloDocumento">Arquivo com o modelo de proposta de trabalho:<span style="color:red; font-weight:bold;">*</span></label>
                     @if($evento->modeloDocumento != null)
                         <a href="{{route('download', ['file' => $evento->modeloDocumento])}}" target="_new" style="font-size: 20px; color: #114048ff;" >
                             <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px">
@@ -712,10 +712,53 @@
                     </div>
             </div>
 
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="pdfRecurso">Arquivo com o modelo do formulário de recurso:<span style="color:red; font-weight:bold;">*</span></label>
+                    @if($evento->docRecurso != null)
+                        <a href="{{route('download', ['file' => $evento->docRecurso])}}" target="_new" style="font-size: 20px; color: #114048ff;" >
+                            <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px">
+                        </a>
+                    @else
+                        <a>
+                            <i class="fas fa-times-circle fa-2x" style="color:red; font-size:25px"></i>
+                        </a>
+                    @endif
+                    <input type="file" class="form-control-file @error('pdfRecurso') is-invalid @enderror" name="pdfRecurso" value="{{ old('pdfRecurso') }}" id="pdfRecurso">
+                    <small>O arquivo selecionado deve ter até 2mb.</small>
+                    @error('pdfRecurso')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="pdfRelatorio">Arquivo com o modelo do relatório técnico/pedagógico:</label>
+                    @if($evento->docRelatorio != null)
+                        <a href="{{route('download', ['file' => $evento->docRelatorio])}}" target="_new" style="font-size: 20px; color: #114048ff;" >
+                            <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px">
+                        </a>
+                    @else
+                        <a>
+                            <i class="fas fa-times-circle fa-2x" style="color:red; font-size:25px"></i>
+                        </a>
+                    @endif
+                    <input type="file" class="form-control-file @error('pdfRelatorio') is-invalid @enderror" name="pdfRelatorio" value="{{ old('pdfRelatorio') }}" id="pdfRelatorio">
+                    <small>O arquivo selecionado deve ter até 2mb.</small>
+                    @error('pdfRelatorio')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    </div>
+            </div>
            
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="pdfEdital">Formulário de avaliação do relatório:</label>
+                    <label for="pdfFormAvalRelatorio">Formulário de avaliação do relatório:</label>
                     @if($evento->formAvaliacaoRelatorio != null)
                         <a href="{{route('download', ['file' => $evento->formAvaliacaoRelatorio])}}" target="_new" style="font-size: 20px; color: #114048ff;" >
                             <img class="" src="{{asset('img/icons/file-download-solid.svg')}}" style="width:20px">

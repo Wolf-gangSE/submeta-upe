@@ -90,11 +90,6 @@ class EventoController extends Controller
         $user_id = Auth()->user()->id;
 
         //dd($user_id);
-        if(isset($request->modeloDocumento)){
-            $request->validate([
-                'modeloDocumento' => ['file', 'max:2048', new ExcelRule($request->file('modeloDocumento'))],
-            ]);
-        }
         if(isset($request->docTutorial)){
             $request->validate([
                 'docTutorial' => ['file', 'max:2048', new ExcelRule($request->file('docTutorial'))],
@@ -174,9 +169,9 @@ class EventoController extends Controller
             'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
             'inicioProjeto'       => ['required', 'date', 'after:yesterday'],
             'fimProjeto'          => ['required', 'date', 'after_or_equal:fimSubmissao'],
-            'pdfRelatorio'      => [($request->pdfRelatorioPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
-            'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
-            'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
+            'pdfRelatorio'      => [($request->pdfRelatorioPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
+            'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
+            'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
             //'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
         ]);
         
@@ -550,6 +545,9 @@ class EventoController extends Controller
                 'fimProjeto'          => ['required', 'date'],
                 'docTutorial'     => ['file', 'mimes:zip,doc,docx,pdf', 'max:2048'],
                 'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null), 'max:255'],
+                'pdfRelatorio'      => ['file', 'mimes:pdf', 'max:2048'],
+                'pdfRecurso'        => ['file', 'mimes:pdf', 'max:2048'],
+                'modeloDocumento'   => ['file', 'mimes:pdf', 'max:2048'],
             ]);
         }
 
@@ -572,12 +570,15 @@ class EventoController extends Controller
             'dt_fimRelatorioParcial'     => ['required', 'date', 'after_or_equal:dt_inicioRelatorioParcial'],
             'dt_inicioRelatorioFinal'  => ['required', 'date', 'after:dt_fimRelatorioParcial'],
             'dt_fimRelatorioFinal'     => ['required', 'date', 'after_or_equal:dt_inicioRelatorioFinal'],
-            'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
+            'modeloDocumento'     => ['file', 'mimes:doc,docx,odt,pdf', 'max:2048'],
             'pdfFormAvalExterno'           => ['file', 'mimes:pdf,doc,docx,xlsx,xls,csv,zip', 'max:2048'],
             'inicioProjeto'       => ['required', 'date', 'after:resultado_final'],
             'fimProjeto'          => ['required', 'date', 'after:inicioProjeto'],
             'docTutorial'     => ['file', 'mimes:zip,doc,docx,pdf', 'max:2048'],
             'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null) , 'max:255'],
+            'pdfRelatorio'      => ['file', 'mimes:doc,docx,pdf', 'max:2048'],
+            'pdfRecurso'        => ['file', 'mimes:doc,docx,pdf', 'max:2048'],
+            'modeloDocumento'   => ['file', 'mimes:doc,docx,pdf', 'max:2048'],
         ]);
 
         if ($request->tipoAvaliacao == 'form') {
@@ -679,6 +680,26 @@ class EventoController extends Controller
             $evento->formAvaliacaoRelatorio = $path . $nome;
         }
 
+        if(isset($request->pdfRecurso)){
+            $pdfRecurso = $request->pdfRecurso;
+            $extension = $pdfRecurso->extension();
+            $path = 'pdfRecurso/' . $evento->id . '/';
+            $nome = "recurso" . "." . $extension;
+            Storage::putFileAs($path, $pdfRecurso, $nome);
+
+            $evento->docRecurso = $path . $nome;
+        }
+        
+        if(isset($request->pdfRelatorio)){
+            $pdfRelatorio = $request->pdfRelatorio;
+            $extension = $pdfRelatorio->extension();
+            $path = 'pdfRelatorio/' . $evento->id . '/';
+            $nome = "relatorio" . "." . $extension;
+            Storage::putFileAs($path, $pdfRelatorio, $nome);
+
+            $evento->docRelatorio = $path . $nome;
+        }
+
         // Editando campos de avaliacao
         if ($request->tipoAvaliacao == 'campos') {
             if($request->has('campos')){
@@ -770,8 +791,10 @@ class EventoController extends Controller
             CampoAvaliacao::withTrashed()->where('evento_id', $id)->update(['evento_id' => null]);
         }
 
-        Storage::deleteDirectory('pdfEdital/' . $evento->id );
+        Storage::deleteDirectory('pdfEdital/' . $evento->id);
         Storage::deleteDirectory('modeloDocumento/' . $evento->id);
+        Storage::deleteDirectory('pdfRecurso/' . $evento->id);
+        Storage::deleteDirectory('pdfRelatorio/' . $evento->id);
 
         $evento->delete();
 
@@ -928,6 +951,28 @@ class EventoController extends Controller
         if (Storage::disk()->exists($evento->modeloDocumento)) {
             ob_end_clean();
             return Storage::download($evento->modeloDocumento);
+        }
+
+        return abort(404);
+    }
+
+    public function baixarRelatorio($id) {
+        $evento = Evento::find($id);
+
+        if (Storage::disk()->exists($evento->docRelatorio)) {
+            ob_end_clean();
+            return Storage::download($evento->docRelatorio);
+        }
+
+        return abort(404);
+    }
+
+    public function baixarRecurso($id) {
+        $evento = Evento::find($id);
+
+        if (Storage::disk()->exists($evento->docRecurso)) {
+            ob_end_clean();
+            return Storage::download($evento->docRecurso);
         }
 
         return abort(404);
