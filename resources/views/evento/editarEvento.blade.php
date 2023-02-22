@@ -92,7 +92,7 @@
                 <input type="checkbox" name="check_docExtra" id="check_docExtra" onclick="showDocumentoExtra()" style="margin-left: 5px" @if($evento->nome_docExtra != null ) checked @endif {{ old('check_docExtra') ? 'checked' : ''}}>
             </div>
 
-            <div class="col-sm-5">
+            <!-- <div class="col-sm-5">
                 <label for="consu" class="col-form-label">{{ __('Decisão da Câmara ou Conselho Pertinente: obrigatório? ') }}</label>
                 <input type="checkbox" @if($evento->consu) checked @endif name="consu" id="consu">
 
@@ -101,7 +101,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
+            </div> -->
 
             <div class="col-sm-3">
                 <label for="cotaDoutor" class="col-form-label">{{ __('Cota para recém doutor?') }}</label>

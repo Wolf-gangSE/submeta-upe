@@ -77,7 +77,7 @@
                 <input type="checkbox" name="check_docExtra" id="check_docExtra" onclick="showDocumentoExtra()" style="margin-left: 5px" {{ old('check_docExtra') ? 'checked' : ''}}>
             </div>
 
-            <div class="col-sm-5">
+            <!-- <div class="col-sm-5">
                 <label for="consu" id="decisaoCamara" class="col-form-label">{{ __('Decisão da Câmara ou Conselho Pertinente: Obrigatório? ') }} </label>
                 <input type="checkbox" name="consu" id="consu" style="margin-left: 5px" {{ old('consu') ? 'checked' : ''}}>
                 @error('consu')
@@ -85,7 +85,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
+            </div> -->
             <div class="col-sm-3">
                 <label for="cotaDoutor" class="col-form-label">{{ __('Cota para recém doutor: ') }}</label>
                 <input type="checkbox" name="cotaDoutor" id="cotaDoutor" style="margin-left: 5px" {{ old('cotaDoutor') ? 'checked' : ''}}>
