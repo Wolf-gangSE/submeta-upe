@@ -23,7 +23,7 @@
 
           </div>
 
-          @if($edital->tipo != "PIBEX")
+          <!-- @if($edital->tipo != "PIBEX")
             <div class="form-group col-md-6" style="margin-top: 10px">
               <label for="anexoLatterCoordenador" class="col-form-label font-tam" style="font-weight: bold">{{ __('Lattes do Coordenador: ') }}<span style="color: red; font-weight:bold">*</span></label>
                 <input type="file" class="input-group-text" name="anexoLattesCoordenador" placeholder="anexoPlanoTrabalho" accept=".pdf" />
@@ -33,9 +33,9 @@
               </span>
               @enderror
             </div>
-          @endif
+          @endif -->
 
-          @if($edital->tipo != "PIBEX")
+          <!-- @if($edital->tipo != "PIBEX")
             <div class="form-group col-md-6">
               <label for="anexoPlanilhaPontuacao" class="col-form-label font-tam" style="font-weight: bold">{{ __('Planilha de Pontuação: ') }}<span style="color: red; font-weight:bold">*</span></label>
                 <input type="file" class="input-group-text" name="anexoPlanilhaPontuacao" placeholder="anexoPlanilhaPontuacao" accept=".xlsx, .xls, .ods" />
@@ -46,9 +46,9 @@
                 @enderror
 
             </div>
-          @endif
+          @endif -->
 
-          @if($edital->consu)
+          <!-- @if($edital->consu)
             <div class="form-group col-md-6">
               <label title="Decisão da Câmara ou Conselho Pertinente" for="anexoCONSU" class="col-form-label font-tam" style="font-weight: bold">{{ __('Decisão da Câmara ou Conselho Pertinente: ') }}<span style="color: red; font-weight:bold">*</span></label>
               <input type="file" class="input-group-text" name="anexoDecisaoCONSU"  accept=".pdf" />
@@ -68,9 +68,9 @@
                   </span>
               @enderror
             </div>
-          @endif
+          @endif -->
 
-          @if($edital->tipo != "PIBEX")
+          <!-- @if($edital->tipo != "PIBEX")
             <div class="form-group col-md-6" style="margin-top: 10px">
               <label for="nomeTrabalho" class="col-form-label font-tam" style="font-weight: bold">{{ __('Grupo de Pesquisa: ') }}<span style="color: red; font-weight:bold">*</span></label>
                <input type="file" class="input-group-text" name="anexoGrupoPesquisa" placeholder="Anexo do Grupo de Pesquisa" accept="application/pdf" />
@@ -80,7 +80,7 @@
                 </span>
                 @enderror
             </div>
-          @endif
+          @endif -->
 
           @if($edital->tipo != "PIBEX")
             <div class="form-group col-md-6">

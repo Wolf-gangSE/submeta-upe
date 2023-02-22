@@ -28,7 +28,7 @@
 
           </div>
 
-          @if($edital->tipo != "PIBEX")
+          <!-- @if($edital->tipo != "PIBEX")
             <div class="form-group col-md-6" style="margin-top: 10px">
               <label for="anexoLatterCoordenador" class="col-form-label font-tam" style="font-weight: bold">{{ __('Lattes do Coordenador: ') }}</label>
               @if($projeto->anexoLattesCoordenador)
@@ -111,7 +111,7 @@
                 </span>
               @enderror
             </div>
-          @endif
+          @endif -->
 
 
             @if($edital->tipo != "PIBEX")
@@ -127,7 +127,7 @@
             </span>
 
               <div class="form-group" id="displaySim" style="display: block; margin-top:-1rem">
-                <label for="nomeTrabalho" class="col-form-label font-tam" style="font-weight: bold;font-size: 13px">{{ __('Sim, declaro que necessito de autorizações especiais') }}</label>
+                <label for="nomeTrabalho" class="col-form-label font-tam" style="font-weight: bold">{{ __('Sim, declaro que necessito de autorizações especiais') }}</label>
                 @if($projeto->anexoAutorizacaoComiteEtica )
 
                       <a href="{{ route('baixar.anexo.comite', ['id' => $projeto->id]) }}"><i class="fas fa-file-pdf fa-2x"></i></a>
