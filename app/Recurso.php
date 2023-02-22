@@ -12,7 +12,7 @@ class Recurso extends Model
    * @var array
    */
   protected $fillable = [
-      'tituloRecurso', 'corpoRecurso', 'statusAvaliacao', 'trabalhoId', 'comissaoId',
+      'tituloRecurso', 'corpoRecurso', 'statusAvaliacao', 'trabalhoId', 'comissaoId', 'pdfRecurso'
   ];
 
   public function trabalho(){
