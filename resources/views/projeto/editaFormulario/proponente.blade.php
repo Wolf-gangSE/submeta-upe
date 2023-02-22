@@ -40,7 +40,7 @@
             @enderror
           </div>
 
-          @if($edital->tipo != "PIBEX")
+          <!-- @if($edital->tipo != "PIBEX")
             <div class="col-md-2">
               <br>
               <label for="lattes" class="col-form-label font-tam" style="font-weight: bold">{{ __('Grupo de Pesquisa: ') }}</label>
@@ -72,7 +72,7 @@
             </span>
               @enderror
             </div>
-          @endif
+          @endif -->
 
           @if($edital->cotaDoutor != false)
             <div class="col-md-1">
