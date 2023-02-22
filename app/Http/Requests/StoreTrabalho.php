@@ -77,13 +77,13 @@ class StoreTrabalho extends FormRequest
                 $rules['anexo_docExtra']               = [Rule::requiredIf($evento->obrigatoriedade_docExtra == true),'file', 'mimes:zip,doc,docx,pdf', 'max:2048'];
             }
             if($evento->tipo!="PIBEX"){
-                $rules['anexoPlanilhaPontuacao']       = ['required'];
-                $rules['anexoLattesCoordenador']       = ['required', 'mimes:pdf'];
-                $rules['anexoGrupoPesquisa']           = ['required', 'mimes:pdf'];
+                $rules['anexoPlanilhaPontuacao']       = [];
+                $rules['anexoLattesCoordenador']       = ['mimes:pdf'];
+                $rules['anexoGrupoPesquisa']           = ['mimes:pdf'];
                 $rules['anexoAutorizacaoComiteEtica']  = [Rule::requiredIf($this->autorizacaoFlag == 'sim')];
                 $rules['justificativaAutorizacaoEtica']= [Rule::requiredIf($this->autorizacaoFlag == 'nao')];
-                $rules['pontuacaoPlanilha']            = ['required', 'string'];
-                $rules['linkGrupoPesquisa']            = ['required', 'string'];
+                $rules['pontuacaoPlanilha']            = ['string'];
+                $rules['linkGrupoPesquisa']            = ['string'];
             }
 
             $rules['editalId']                     = ['required', 'string'];
