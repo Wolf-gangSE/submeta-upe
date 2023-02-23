@@ -1178,11 +1178,11 @@ class AdministradorController extends Controller
 
     public function baixarModeloAvaliacao()
     {
-        $file = public_path().'/ModeloFormularioAvaliadorExternoPIBIC.docx';
+        $file = public_path().'/ModeloFormularioAvaliadorExterno.docx';
         $headers = ['Content-Type: application/docx'];
         ob_end_clean();
 
-        return response()->download($file, 'ModeloFormularioAvaliadorExternoPIBIC.docx', $headers);
+        return response()->download($file, 'ModeloFormularioAvaliadorExterno.docx', $headers);
     }
 
     public function imprimirResultados(Request $request)

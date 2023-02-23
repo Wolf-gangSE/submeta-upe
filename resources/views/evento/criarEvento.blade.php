@@ -28,11 +28,14 @@
             <div class="col-sm-5">
                 <label for="tipo" class="col-form-label">{{ __('Tipo:') }}<span style="color:red; font-weight:bold;">*</span></label>
                 <select id="tipo" type="text" class="form-control @error('tipo') is-invalid @enderror" name="tipo" value="{{ old('tipo') }}" required>
-                    <option @if(old('tipo')=='PIBIC' ) selected @endif value="PIBIC">PIBIC</option>
+                    <option @if(old('tipo') == "ComponentesCurriculares")) selected @endif value="ComponentesCurriculares">Apoio à Vivência de Componentes Curriculares</option>
+                    <option @if(old('tipo') == "InovacaoPedagogica")) selected @endif value="InovacaoPedagogica">Inovação Pedagógica</option>
+                    <option @if(old('tipo') == "ApoioPsico")) selected @endif value="InovacaoPedagogica">Apoio Psicossocial ou Psicopedagógico</option>
+                    <!-- <option @if(old('tipo')=='PIBIC' ) selected @endif value="PIBIC">PIBIC</option>
                     <option @if(old('tipo')=='PIBIC-EM' ) selected @endif value="PIBIC-EM">PIBIC-EM</option>
                     <option @if(old('tipo')=='PIBIC-AF' ) selected @endif value="PIBIC-AF">PIBIC-AF</option>
                     <option @if(old('tipo')=='PIBITI' ) selected @endif value="PIBITI">PIBITI</option>
-                    <option @if(old('tipo')=='PIBEX' ) selected @endif value="PIBEX">PIBEX</option>
+                    <option @if(old('tipo')=='PIBEX' ) selected @endif value="PIBEX">PIBEX</option> -->
                 </select>
 
                 @error('tipo')

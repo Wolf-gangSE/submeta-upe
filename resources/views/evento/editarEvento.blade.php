@@ -42,11 +42,15 @@
                 <label for="tipo" class="col-form-label">{{ __('Tipo:') }}<span style="color: red; font-weight: bold;">*</span></label>
                 <!-- <input value="{{$evento->tipo}}" id="tipo" type="text" class="form-control @error('tipo') is-invalid @enderror" name="tipo" value="{{ old('tipo') }}" required autocomplete="tipo" autofocus> -->
                 <select id="tipo" type="text" class="form-control @error('tipo') is-invalid @enderror" name="tipo" required>
-                    <option value="PIBIC" {{ $evento->tipo == "PIBIC" ? 'selected' :'' }}>PIBIC</option>
+                    <option @if($evento->tipo == "ComponentesCurriculares")) selected @endif value="ComponentesCurriculares">Apoio à Vivência de Componentes Curriculares</option>
+                    <option @if($evento->tipo == "InovacaoPedagogica")) selected @endif value="InovacaoPedagogica">Inovação Pedagógica</option>
+                    <option @if($evento->tipo == "ApoioPsico")) selected @endif value="InovacaoPedagogica">Apoio Psicossocial ou Psicopedagógico</option>
+                    
+                    <!-- <option value="PIBIC" {{ $evento->tipo == "PIBIC" ? 'selected' :'' }}>PIBIC</option>
                     <option value="PIBIC-EM" {{ $evento->tipo == "PIBIC-EM" ?  'selected' :'' }}>PIBIC-EM</option>
                     <option value="PIBIC-AF" {{ $evento->tipo == "PIBIC-AF" ?  'selected' :'' }}>PIBIC-AF</option>
                     <option value="PIBITI" {{ $evento->tipo == "PIBITI" ?  'selected' :'' }}>PIBITI</option>
-                    <option value="PIBEX" {{ $evento->tipo == "PIBEX" ?  'selected' :'' }}>PIBEX</option>
+                    <option value="PIBEX" {{ $evento->tipo == "PIBEX" ?  'selected' :'' }}>PIBEX</option> -->
                 </select>
                 @error('tipo')
                 <span class="invalid-feedback" role="alert">
