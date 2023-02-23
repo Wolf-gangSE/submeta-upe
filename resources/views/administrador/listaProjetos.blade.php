@@ -92,7 +92,9 @@
                                     </span>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-6"></div>
+
+                    <!-- <div class="col-sm-6">
                       <label for="nomeTrabalho" class="col-form-label">{{ __('Pontuação da Planilha de Pontuação :') }}</label>
                       <span class="form-control" name="pontuacaoPlanilha">{{$trabalho->pontuacaoPlanilha}}</span>
                     </div>
@@ -100,7 +102,7 @@
                     <div class="col-sm-12">
                       <label for="nomeTrabalho" class="col-form-label">{{ __('Link do grupo de pesquisa:') }}</label>
                       <span  class="form-control" name="linkGrupo">{{ $trabalho->linkGrupoPesquisa }}</span>
-                    </div>
+                    </div> -->
 
                   </div>
                   <hr>
@@ -115,10 +117,10 @@
                       <a href="{{ route('baixar.anexo.projeto', ['id' => $trabalho->id])}}">Arquivo atual</a>
                     </div>
 
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                       <label for="anexoLatterCoordenador" class="col-form-label">{{ __('Anexo do Lattes do Coordenador: ') }}</label>
                       <a href="{{ route('baixar.anexo.lattes', ['id' => $trabalho->id]) }}"> Arquivo atual</a>
-                    </div>
+                    </div> -->
 
                     <div class="col-sm-6">
                       <label for="nomeTrabalho" class="col-form-label">{{ __('Autorização do Comitê de Ética: ') }}</label>
@@ -129,12 +131,12 @@
                       @endif
                     </div>
 
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                       <label for="anexoPlanilha" class="col-form-label">{{ __('Anexo do Planilha de Pontuação: ') }}</label>
                       <a href="{{ route('baixar.anexo.planilha', ['id' => $trabalho->id]) }}"> Arquivo atual</a>
-                    </div>
+                    </div> -->
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                       <label for="nomeTrabalho" class="col-form-label">{{ __('Justificativa: ') }}</label>
                       @if($trabalho->justificativaAutorizacaoEtica != null)
                         <a href="{{ route('baixar.anexo.justificativa', ['id' => $trabalho->id]) }}"> Arquivo atual</a>
@@ -143,13 +145,13 @@
                       @endif
                     </div>
 
-                    @if($evento->tipo == 'PIBIC' || $evento->tipo == 'PIBIC-EM')
+                    <!-- @if($evento->tipo == 'PIBIC' || $evento->tipo == 'PIBIC-EM')
                       {{-- Decisão do CONSU --}}
                       <div class="col-sm-6">
                         <label for="anexoCONSU" class="col-form-label">{{ __('Decisão do CONSU: ') }}</label>
                         <a href="{{ route('baixar.anexo.consu', ['id' => $trabalho->id]) }}"> Arquivo atual</a>
                       </div>
-                    @endif
+                    @endif -->
 
                   </div>
                   <hr>
