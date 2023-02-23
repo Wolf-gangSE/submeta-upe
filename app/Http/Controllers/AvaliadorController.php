@@ -180,23 +180,35 @@ class AvaliadorController extends Controller
         $trabalho = $avaliador->trabalhos->find($request->trabalho_id);
         $parecerInterno = ParecerInterno::where([['avaliador_id',$avaliador->id],['trabalho_id',$trabalho->id]])->first();
         $statusParecer = "NAO-RECOMENDADO";
-        if(
-            $request->anexoLinkLattes=='aceito' && $request->anexoGrupoPesquisa=='aceito' && $request->anexoProjeto=='aceito' &&
-            $request->anexoConsu=='aceito' && $request->anexoLattesCoordenador=='aceito' && $request->anexoPlano=='aceito' &&
-            $request->anexoGrupoPesquisa=='aceito' && $request->anexoComiteEtica=='aceito' && $request->anexoJustificativa=='aceito'
-            ){
-                $statusParecer = "RECOMENDADO";
+
+        // if(
+        //     $request->anexoLinkLattes=='aceito' && $request->anexoGrupoPesquisa=='aceito' && $request->anexoProjeto=='aceito' &&
+        //     $request->anexoConsu=='aceito' && $request->anexoLattesCoordenador=='aceito' && $request->anexoPlano=='aceito' &&
+        //     $request->anexoGrupoPesquisa=='aceito' && $request->anexoComiteEtica=='aceito' && $request->anexoJustificativa=='aceito'
+        //     ){
+        //         $statusParecer = "RECOMENDADO";
+        // }
+
+        if (!is_null($trabalho->anexoAutorizacaoComiteEtica)) {
+            if(
+                $request->anexoLinkLattes=='aceito' && $request->anexoProjeto=='aceito' && $request->anexoPlano=='aceito' && $request->anexoComiteEtica=='aceito'
+                ){
+                    $statusParecer = "RECOMENDADO";
+            }
+        } else {
+            if(
+                $request->anexoLinkLattes=='aceito' && $request->anexoProjeto=='aceito' && $request->anexoPlano=='aceito' && $request->anexoJustificativa=='aceito'
+                ){
+                    $statusParecer = "RECOMENDADO";
+            }
         }
+
+        
         if($parecerInterno == null) {
 
             $parecerInterno = ParecerInterno::create([
                 'statusLinkLattesProponente' => $request->anexoLinkLattes,
-                'statusLinkGrupoPesquisa' => $request->anexoGrupoPesquisa,
                 'statusAnexoProjeto' => $request->anexoProjeto,
-                'statusAnexoDecisaoCONSU' => $request->anexoConsu,
-                'statusAnexoPlanilhaPontuacao' => $request->anexoPlanilha,
-                'statusAnexoLattesCoordenador' => $request->anexoLattesCoordenador,
-                'statusAnexoGrupoPesquisa' => $request->anexoGrupoPesquisa,
                 'statusAnexoAtuorizacaoComiteEtica' => $request->anexoComiteEtica,
                 'statusJustificativaAutorizacaoEtica' => $request->anexoJustificativa,
                 'statusPlanoTrabalho' => $request->anexoPlano,

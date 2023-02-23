@@ -117,7 +117,7 @@
 					</div>
 					<div class="col-sm-6"></div>
 
-					<div class="col-sm-3" >
+					<!-- <div class="col-sm-3" >
 						<label for="nomeTrabalho" class="col-form-label">{{ __('Grupo de pesquisa: ') }}</label>
 					</div>
 					<div class="col-sm-3" style="top: 5px; text-align: right">
@@ -127,7 +127,7 @@
 
 						<label for="recusado">{{ __(' Recusado') }}</label>
 						<input type="radio" name="anexoGrupoPesquisa" value="recusado" @if($parecer!=null && $parecer->statusLinkGrupoPesquisa =='recusado' ) checked @endif>
-					</div>
+					</div> -->
 
 				</div>
 
@@ -149,7 +149,7 @@
                         <input type="radio" name="anexoProjeto" value="recusado" @if($parecer!=null && $parecer->statusAnexoProjeto =='recusado' ) checked @endif>
                     </div>
 
-					<div class="col-sm-3">
+					<!-- <div class="col-sm-3">
 						<label for="anexoLatterCoordenador" class="col-form-label">{{ __('Lattes do Coordenador: ') }}</label>
 					</div>
 					<div class="col-sm-3" style="top: 5px; text-align: right">
@@ -159,7 +159,7 @@
 
                         <label for="recusado">{{ __(' Recusado') }}</label>
                         <input type="radio" name="anexoLattesCoordenador" value="recusado" @if($parecer!=null && $parecer->statusAnexoLattesCoordenador =='recusado' ) checked @endif>
-                    </div>
+                    </div> -->
 
 					<div class="col-sm-3">
 						<label for="anexoPlanilha" class="col-form-label">{{ __('Pontuação calculada: ') }}</label>
@@ -172,7 +172,7 @@
 							    @endif @endif required>
 					</div>
 
-					@if($evento->tipo == 'PIBIC' || $evento->tipo == 'PIBIC-EM')
+					<!-- @if($evento->tipo == 'PIBIC' || $evento->tipo == 'PIBIC-EM')
 						{{-- Decisão do CONSU --}}
 						<div class="col-sm-3">
 							<label for="anexoCONSU" class="col-form-label">{{ __('Decisão do CONSU: ') }}</label>
@@ -185,20 +185,21 @@
                             <label for="recusado">{{ __(' Recusado') }}</label>
                             <input type="radio" name="anexoConsu" value="recusado" @if($parecer!=null && $parecer->statusAnexoDecisaoCONSU =='recusado' ) checked @endif>
                         </div>
-					@endif
+					@endif -->
 
+					@if($trabalho->anexoAutorizacaoComiteEtica != null)
 					<div class="col-sm-3">
 						<label for="nomeTrabalho" class="col-form-label">{{ __('Autorização do Comitê de Ética: ') }}</label>
 					</div>
 					<div class="col-sm-3" style="top: 5px; text-align: right">
 
-                        <label for="aceito" style="left: auto">{{ __(' Aceita') }}</label>
-                        <input type="radio" name="anexoComiteEtica" value="aceito" @if($parecer!=null && $parecer->statusAnexoAtuorizacaoComiteEtica =='aceito' ) checked @endif required>
+								<label for="aceito" style="left: auto">{{ __(' Aceita') }}</label>
+								<input type="radio" name="anexoComiteEtica" value="aceito" @if($parecer!=null && $parecer->statusAnexoAtuorizacaoComiteEtica =='aceito' ) checked @endif required>
 
-                        <label for="recusado">{{ __(' Recusada') }}</label>
-                        <input type="radio" name="anexoComiteEtica" value="recusado" @if($parecer!=null && $parecer->statusAnexoAtuorizacaoComiteEtica =='recusado' ) checked @endif>
-                    </div>
-
+								<label for="recusado">{{ __(' Recusada') }}</label>
+								<input type="radio" name="anexoComiteEtica" value="recusado" @if($parecer!=null && $parecer->statusAnexoAtuorizacaoComiteEtica =='recusado' ) checked @endif>
+            </div>
+					@else
 					<div class="col-sm-3">
 						<label for="nomeTrabalho" class="col-form-label">{{ __('Justificativa: ') }}</label>
 					</div>
@@ -210,6 +211,7 @@
 						<label for="recusado">{{ __(' Recusada') }}</label>
 						<input type="radio" name="anexoJustificativa" value="recusado" @if($parecer!=null && $parecer->statusJustificativaAutorizacaoEtica =='recusado' ) checked @endif>
 					</div>
+					@endif
 
 					{{--Planos de trabalho--}}
 					<div class="col-sm-3">
