@@ -122,7 +122,7 @@
                                 @endif
                             </div>
 
-                            @if($evento->tipo != "PIBEX")
+                            <!-- @if($evento->tipo != "PIBEX")
                                 <div class="col-md-12">
                                     <br>
                                     <b style="color: #4D4D4D;">Grupo de Pesquisa: </b>
@@ -136,7 +136,7 @@
                                     <b style="color: #4D4D4D;">Valor da Planilha de Pontuação: </b>
                                     <a style="color: #4D4D4D;">{{$trabalho->pontuacaoPlanilha}}</a>
                                 </div>
-                            @endif
+                            @endif -->
                             @if($trabalho->modalidade != null)
                                 <div class="col-md-12">
                                     <br>
@@ -448,7 +448,7 @@
 
                             </div>
 
-                            @if($evento->tipo != "PIBEX")
+                            <!-- @if($evento->tipo != "PIBEX")
                                 <div class="col-sm-4">
                                     <label for="anexoLatterCoordenador" class="col-form-label font-tam"
                                            style="font-weight: bold">{{ __('Lattes do Coordenador: ') }}</label>
@@ -458,7 +458,7 @@
                                                                                                                 alt=""></a>
 
                                 </div>
-                            @endif
+                            @endif -->
 
                             @if($evento->tipo != "PIBEX")
                                 <div class="col-sm-4">
@@ -476,7 +476,7 @@
                                 </div>
                             @endif
 
-                            @if($evento->tipo != "PIBEX")
+                            <!-- @if($evento->tipo != "PIBEX")
                                 <div class="col-sm-4">
                                     <label for="anexoPlanilha" class="col-form-label font-tam"
                                            style="font-weight: bold">{{ __('Planilha de Pontuação: ') }}</label>
@@ -508,7 +508,7 @@
                                            style="font-weight: bold">{{ __('Câmara ou Conselho Pertinente: ') }}</label>
                                     <a href="{{ route('baixar.anexo.consu', ['id' => $trabalho->id]) }}"><img class="" src="{{asset('img/icons/pdf.ico')}}" style="width:40px" alt=""></a>
                                 </div>
-                            @endif
+                            @endif -->
                             @if($evento->nome_docExtra != null)
                                 {{-- Documento Extra --}}
                                 <div class="col-sm-4">
