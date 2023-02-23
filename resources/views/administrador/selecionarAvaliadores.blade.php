@@ -303,7 +303,7 @@
               <label for="exampleFormControlSelect1">Instituição <span style="color: red; font-weight:bold">*</span></label>
               <select class="form-control" name="instituicao" id="membro" required onchange="mostrarDiv(this)">
                 <option value="" disabled>-- Selecione a instituição --</option>
-                <option value="ufape" >Universidade Federal do Agreste de Pernambuco</option>
+                <option value="upe" >Universidade de Pernambuco</option>
                 <option value="outra" >Outra</option>
               </select>
             </div> 
@@ -405,7 +405,7 @@
       if(select.value == "outra") {
           document.getElementById('div-outra').style.display = "block";
           $("#outra").prop('required',true);
-      }else if(select.value == "ufape"){
+      }else if(select.value == "upe"){
         document.getElementById('div-outra').style.display = "none";
         $("#outra").prop('required',false);
       }

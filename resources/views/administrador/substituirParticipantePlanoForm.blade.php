@@ -203,7 +203,7 @@
                 @component('componentes.input', ['label' => 'Instituição de Ensino'])
                 <select style="display: inline" onchange="showInstituicao(this)" class="form-control" name="instituicao" id="instituicaoManter[{{$participante->id}}]" disabled>
                     <option value="" disabled selected hidden>-- Instituição --</option>
-                    <option value="UFAPE">Universidade Federal do Agreste de Pernambuco - UFAPE</option>
+                    <option value="UPE">Universidade de Pernambuco - UPE</option>
                     <option value="Outra">Outra</option>
                 </select>
                 @error('instituicao')

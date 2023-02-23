@@ -193,7 +193,7 @@
                 @component('componentes.input', ['label' => 'Instituição de Ensino'])
                 <select style="display: inline" onchange="showInstituicao1(this)" class="form-control" name="instituicao" id="instituicao[{{$participante->id}}]" required>
                     <option value="" disabled selected hidden>-- Instituição --</option>
-                    <option value="UFAPE">Universidade Federal do Agreste de Pernambuco - UFAPE</option>
+                    <option value="UPE">Universidade de Pernambuco - UPE</option>
                     <option value="Outra">Outra</option>
                 </select>
                 @error('instituicao')
@@ -513,7 +513,7 @@ function showInstituicao1(instituicao){
         display.style.display = "block";
         instituicao.parentElement.style.display = '';
         instituicao.value="";
-    }else if(instituicaoSelect.value === "UFAPE"){
+    }else if(instituicaoSelect.value === "UPE"){
         display.style.display = "none";
     }
 }

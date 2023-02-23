@@ -78,7 +78,7 @@
                                     <label for="instituicaoSelect" class="col-form-label" style="font-weight:600;">{{ __('Instituição de Vínculo') }}<span style="color: red; font-weight:bold;">*</span></label>
                                     <select style="display: inline" onchange="showInstituicao()" class="form-control @error('instituicaoSelect') is-invalid @enderror" name="instituicaoSelect" id="instituicaoSelect">
                                         <option value="" disabled selected hidden>-- Instituição --</option>
-                                        <option @if(old('instituicaoSelect')=='UFAPE' ) selected @endif value="UFAPE">Universidade Federal do Agreste de Pernambuco - UFAPE</option>
+                                        <option @if(old('instituicaoSelect')=='UPE' ) selected @endif value="UPE">Universidade de Pernambuco - UPE</option>
                                         <option @if(old('instituicaoSelect')=='Outra' ) selected @endif value="Outra">Outra</option>
                                     </select>
                                     @error('instituicaoSelect')
@@ -606,7 +606,7 @@
             document.getElementById("displayOutro").style.display = "block";
             instituicao.parentElement.style.display = '';
             document.getElementById('instituicao').value = "";
-        } else if (instituicaoSelect.value === "UFAPE") {
+        } else if (instituicaoSelect.value === "UPE") {
             document.getElementById("displayOutro").style.display = "none";
         }
     }

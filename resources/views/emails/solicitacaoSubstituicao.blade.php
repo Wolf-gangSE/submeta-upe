@@ -12,7 +12,7 @@
         <p>
 			Atenciosamente,
 			<br>
-            Universidade Federal do Agreste de Pernambuco.
+            Universidade de Pernambuco.
         </p>	
     @else
         <h4>Saudações</h4>
@@ -26,7 +26,7 @@
         <p>
             Atenciosamente,
             <br>
-            Universidade Federal do Agreste de Pernambuco.
+            Universidade de Pernambuco.
         </p>
     @endif
 </body>
