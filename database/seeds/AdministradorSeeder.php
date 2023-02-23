@@ -18,5 +18,11 @@ class AdministradorSeeder extends Seeder
         'matricula'=>'123456789',
         'user_id' => $user_id[0],
       ]);
+
+      $user_id = DB::table('users')->where('name','Lucas Henrique (ADM)')->pluck('id');
+      DB::table('administradors')->insert([
+        'matricula'=>'012345678',
+        'user_id' => $user_id[0],
+      ]);
     }
 }
