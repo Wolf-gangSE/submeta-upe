@@ -523,6 +523,15 @@
                                 </div>
                             @endif
 
+                            {{--Recurso--}}
+                            @if ($trabalho->recurso && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
+                                <div class="col-sm-12">
+                                <hr style="dropdown-hr">
+                                    <label for="anexoRecurso" class="col-form-label font-tam" style="font-weight: bold">{{ __('Recurso: ') }}</label>
+                                    <a name="anexoRecurso" href="{{ route('recurso.baixar', ['id' => $trabalho->recurso->first()->id]) }}"><img class="" src="{{asset('img/icons/pdf.ico')}}" style="width:40px" alt=""></a>
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>

@@ -240,7 +240,7 @@
 				<div class="d-flex justify-content-end">
 					<div style="margin-right: 15px"><a href="{{ route('avaliador.visualizarTrabalho', ['evento_id' => $evento->id])}}"  class="btn btn-light" style="color: red;">Cancelar</a></div>
 					<div>
-						<button type="submit" class="btn btn-success" @if($evento->inicioRevisao > $hoje || $evento->fimRevisao < $hoje) disabled @endif>Enviar meu parecer</button></div>
+						<button type="submit" class="btn btn-success" @if(($evento->inicioRevisao <= $hoje && $evento->fimRevisao >= $hoje) || ((($evento->inicio_recurso <= $hoje) && ($evento->resultado_final > $hoje)) && ($trabalho->recurso->first()->statusAvaliacao == "aprovado"))) "" @else disabled @endif>Enviar meu parecer</button></div>
 				</div>
 			</form>
 		  </div>

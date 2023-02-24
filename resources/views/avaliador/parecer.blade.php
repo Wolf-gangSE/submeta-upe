@@ -73,6 +73,15 @@
 						@endif
 					</div>
 
+					{{--Recurso--}}
+					@if ($trabalho->recurso && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
+						<div class="col-sm-12">
+						<hr style="dropdown-hr">
+							<label for="anexoRecurso" class="col-form-label font-tam" style="font-weight: bold">{{ __('Recurso: ') }}</label>
+							<a name="anexoRecurso" href="{{ route('recurso.baixar', ['id' => $trabalho->recurso->first()->id]) }}"><img class="" src="{{asset('img/icons/pdf.ico')}}" style="width:40px" alt=""></a>
+						</div>
+					@endif
+
 					<!-- TO AKI -->
 					<hr style="border-top: 1px solid#1492E6">
 					<div class="form-row mt-3">
@@ -151,7 +160,7 @@
 					<hr style="border-top: 1px solid#1492E6">
 					<div class="d-flex justify-content-end">
 						<div style="margin-right: 15px"><a href="{{ route('avaliador.visualizarTrabalho', ['evento_id' => $evento->id])}}"  class="btn btn-light" style="color: red;">Cancelar</a></div>
-						<div><button type="submit" class="btn btn-success" @if($evento->inicioRevisao > $hoje || $evento->fimRevisao < $hoje) disabled @endif>Enviar meu parecer</button></div>
+						<div><button type="submit" class="btn btn-success" @if(($evento->inicioRevisao <= $hoje && $evento->fimRevisao >= $hoje) || ((($evento->inicio_recurso <= $hoje) && ($evento->resultado_final > $hoje)) && ($trabalho->recurso->first()->statusAvaliacao == "aprovado"))) "" @else disabled @endif>Enviar meu parecer</button></div>
 						
 					</div>
 				</form>

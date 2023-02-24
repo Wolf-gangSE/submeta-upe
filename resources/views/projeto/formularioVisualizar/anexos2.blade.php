@@ -82,6 +82,14 @@
               </div>
             @endif
 
+            {{--Recurso--}}
+						@if ($projeto->recurso && $projeto->recurso->first()->statusAvaliacao == "aprovado")
+							<div class="col-sm-12">
+								<label for="anexoRecurso" class="col-form-label font-tam" style="font-weight: bold">{{ __('Recurso: ') }}</label>
+								<a name="anexoRecurso" href="{{ route('recurso.baixar', ['id' => $projeto->recurso->first()->id]) }}"><img class="" src="{{asset('img/icons/pdf.ico')}}" style="width:40px" alt=""></a>
+							</div>
+						@endif
+
           </div>
         </div>
       </div>
