@@ -13,15 +13,12 @@
 			<br><br>Solicitamos, gentilmente, que acesse o sistema Submeta através do <a href="{{ url('http://www.submeta.ufape.edu.br/') }}">LINK</a> e da senha {{$senhaTemporaria}}, para realizar o login no sistema e o seu aceite como avaliador de propostas de projetos @if($natureza == '3')de Extensão e Cultura @elseif($natureza == '1') Ensino @elseif($natureza == '2') Pesquisa @endif da UPE.
 			
 			@if($natureza == '3')
-				<br><br>Qualquer dúvida, por favor, entre em contato pelo e-mail: editais.prec@ufape.edu.br
 				<br><br>Desde já, agradecemos a disponibilidade de participar do banco de avaliadores Ad hoc de propostas de Extensão e Cultura da UPE.
-				<br>Seção de Editais e Apoios a Projetos - PREC/UPE
 				<br>Universidade de Pernambuco
 				<br><br>Atenciosamente,
 
 			@elseif($natureza == '2')
 				<br><br>Atenciosamente,
-				<br>Coordenação de Iniciação Científica
 				<br>Universidade de Pernambuco
 			@else
 				<br><br>Atenciosamente,
@@ -48,14 +45,12 @@
 			<br><br>Solicitamos, gentilmente, que acesse o sistema Submeta através do <a href="{{ url('http://www.submeta.ufape.edu.br/') }}">LINK</a>, para realizar o login no sistema e o seu aceite como avaliador de propostas de projetos @if($natureza == '3')de Extensão e Cultura @elseif($natureza == '1') Ensino @elseif($natureza == '2') Pesquisa @endif da UPE.
 			
 			@if($natureza == '3')
-				<br><br>Qualquer dúvida, por favor, entre em contato pelo e-mail: editais.prec@ufape.edu.br
 				<br><br>Desde já, agradecemos a disponibilidade de participar do banco de avaliadores Ad hoc de propostas de Extensão e Cultura da UPE.
 				<br><br>Atenciosamente,
-				<br>Seção de Editais e Apoios a Projetos - PREC/UPE
+				<br>Universidade de Pernambuco
 			
 			@elseif($natureza == '2')
 				<br><br>Atenciosamente,
-				<br>Coordenação de Iniciação Científica
 				<br>Universidade de Pernambuco
 			
 			@else

@@ -16,15 +16,12 @@
 	@endif
 
 	@if($natureza == '3')
-		<br><br>Qualquer dúvida, por favor, entre em contato pelo e-mail: editais.prec@ufape.edu.br 
 		<br><br>Desde já, agradecemos a disponibilidade de participar do banco de avaliadores Ad hoc de propostas de Extensão e Cultura da UPE.
 		<br><br>Atenciosamente,
-		<br>Seção de Editais e Apoios a Projetos - PREC/UPE
 		<br>Universidade de Pernambuco
 
 	@elseif($natureza == '2')
 		<br><br>Atenciosamente,
-		<br>Coordenação de Iniciação Científica
 		<br>Universidade de Pernambuco
 	@else
 		<br><br>Atenciosamente,
