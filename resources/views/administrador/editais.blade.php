@@ -79,6 +79,13 @@
                         <a href="{{route('admin.pareceres', ['evento_id' => $evento->id])}}" class="dropdown-item text-center">
                             Visualizar Pareceres
                         </a>
+                        @php $hoje = date('Y-m-d'); @endphp
+                        @if(($evento->inicio_recurso <= $hoje) && ($evento->resultado_final > $hoje))
+                          <hr class="dropdown-hr">
+                          <a href="{{route('admin.indexAvaliacao', ['evento_id' => $evento->id])}}" class="dropdown-item" style="text-align: center">
+                              Recursos
+                          </a>
+                        @endif
                         @if($evento->tipoAvaliacao != "link")
                         <hr class="dropdown-hr">
                         <a href="{{route('admin.showResultados', ['evento_id' => $evento->id])}}" class="dropdown-item text-center">
