@@ -123,7 +123,8 @@
 											</td>
 											<td><input type="number" name="inputField[{{$i}}][nota_maxima]" class="form-control nota_maxima" value="{{ $campoAvaliacao->nota_maxima }}" disabled/></td>
 											<td><input type="number" name="inputField[{{$i}}][nota_prioridade]" class="form-control nota_maxima" value="{{ $campoAvaliacao->prioridade }}" disabled/></td>
-											<td><input type="number" min="0" max="{{ $campoAvaliacao->nota_maxima }}" step="1" name="inputField[{{$i}}][nota]" class="form-control nota" required />
+											
+											<td><input type="number" min="0" max="{{ $campoAvaliacao->nota_maxima }}" step="1" name="inputField[{{$i}}][nota]" class="form-control nota" value="{{$avaliacaoTrab ? $avaliacaoTrab->where('campo_avaliacao_id', $campoAvaliacao->id)->first()->nota : ''}}" required />
 										</tr>
 										<input type="checkbox" id="checkB[{{$i}}]" checked name="campos[]" value="{{$i}}" hidden>
 										@php ++$i; ++$numCampos; @endphp

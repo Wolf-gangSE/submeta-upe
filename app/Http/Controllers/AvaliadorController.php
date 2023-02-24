@@ -251,8 +251,9 @@ class AvaliadorController extends Controller
         $hoje = Carbon::today('America/Recife');
         $hoje = $hoje->toDateString();
         $camposAvaliacao = CampoAvaliacao::where('evento_id', $evento->id)->get();
+        $avaliacaoTrab = AvaliacaoTrabalho::where('trabalho_id', $trabalho->id)->where('avaliador_id', $avaliador->id)->get();
 
-        return view('avaliador.parecerBarema', ['trabalho'=>$trabalho, 'evento'=>$evento, 'hoje' => $hoje, 'camposAvaliacao' => $camposAvaliacao ]);
+        return view('avaliador.parecerBarema', ['trabalho'=>$trabalho, 'evento'=>$evento, 'hoje' => $hoje, 'camposAvaliacao' => $camposAvaliacao, 'avaliacaoTrab' => $avaliacaoTrab ]);
     }
 
     public function enviarParecerBarema(Request $request) {
