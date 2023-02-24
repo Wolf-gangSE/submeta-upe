@@ -36,9 +36,9 @@
 							@endphp
 								
 							@if(
- 								($evento->inicio_recurso >= $hoje) && ($hoje <= $evento->fim_recurso))
+ 								($evento->inicio_recurso <= $hoje) && ($hoje <= $evento->fim_recurso))
 								<!-- Button trigger modal -->
-								@if ($recurso == null)
+							@if ($recurso == null)
 								<button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#modalRecurso">Enviar</button>
 								@else
 								<button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#modalRecurso">Visualizar</button>

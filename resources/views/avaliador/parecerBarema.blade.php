@@ -75,7 +75,7 @@
 						@endif
 
 						{{--Recurso--}}
-						@if ($trabalho->recurso && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
+						@if ($trabalho->recurso->first() && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
 							<div class="col-sm-12">
 							<hr style="dropdown-hr">
 								<label for="anexoRecurso" class="col-form-label font-tam" style="font-weight: bold">{{ __('Recurso: ') }}</label>
@@ -124,7 +124,7 @@
 											<td><input type="number" name="inputField[{{$i}}][nota_maxima]" class="form-control nota_maxima" value="{{ $campoAvaliacao->nota_maxima }}" disabled/></td>
 											<td><input type="number" name="inputField[{{$i}}][nota_prioridade]" class="form-control nota_maxima" value="{{ $campoAvaliacao->prioridade }}" disabled/></td>
 											
-											<td><input type="number" min="0" max="{{ $campoAvaliacao->nota_maxima }}" step="1" name="inputField[{{$i}}][nota]" class="form-control nota" value="{{$avaliacaoTrab ? $avaliacaoTrab->where('campo_avaliacao_id', $campoAvaliacao->id)->first()->nota : ''}}" required />
+											<td><input type="number" min="0" max="{{ $campoAvaliacao->nota_maxima }}" step="1" name="inputField[{{$i}}][nota]" class="form-control nota" value="{{$avaliacaoTrab->first() ? $avaliacaoTrab->where('campo_avaliacao_id', $campoAvaliacao->id)->first()->nota : ''}}" required />
 										</tr>
 										<input type="checkbox" id="checkB[{{$i}}]" checked name="campos[]" value="{{$i}}" hidden>
 										@php ++$i; ++$numCampos; @endphp

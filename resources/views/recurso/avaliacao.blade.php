@@ -146,7 +146,7 @@
 @section('javascript')
 <script type="text/javascript">
 	$(document).ready(function() {
-		displayStatusAvaliacao("{{ $recurso->statusAvaliacao ? $recurso->statusAvaliacao : '' }}")
+		displayStatusAvaliacao("''")
   });
 	function displayStatusAvaliacao(valor) {
 		if (valor == "aprovado") {

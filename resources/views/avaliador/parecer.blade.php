@@ -74,7 +74,7 @@
 					</div>
 
 					{{--Recurso--}}
-					@if ($trabalho->recurso && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
+					@if ($trabalho->recurso->first() && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
 						<div class="col-sm-12">
 						<hr style="dropdown-hr">
 							<label for="anexoRecurso" class="col-form-label font-tam" style="font-weight: bold">{{ __('Recurso: ') }}</label>
