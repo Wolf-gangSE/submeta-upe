@@ -97,15 +97,11 @@
                                 <label for="curso" class="col-form-label">{{ __('Cursos em que leciona*:') }}</label>
                                 <br>
                                 <div class="row col-md-12">
-                                    @foreach($cursos as $curso)
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" name="curso[]" id="curso{{$curso->id}}" value="{{$curso->id}}" @if((empty(old('curso')) && $proponente->cursos->contains($curso->id)) || (!empty(old('curso')) && in_array($curso->id, old('curso')))) checked
-                                        @endif>
-                                        <label class="form-check-label" for="curso{{$curso->id}}">
-                                            {{ $curso->nome }}
-                                        </label>
-                                    </div>
-                                    @endforeach
+                                    <select multiple style="display: inline" class="form-control select" name="cursos[]" id="cursos">
+                                        @foreach($cursos as $curso)
+                                            <option @if((empty(old('curso')) && $proponente->cursos->contains($curso->id)) || (!empty(old('curso')) && in_array($curso->id, old('curso')))) selected @endif id="curso{{$curso->id}}" value="{{$curso->id}}">{{$curso->nome}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             @endif

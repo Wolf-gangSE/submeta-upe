@@ -151,7 +151,7 @@ class UserController extends Controller
                 $proponente->linkLattes = $request->linkLattes;
 
                 $proponente->user_id = $user->id;
-                $proponente->cursos()->sync($request->curso);
+                $proponente->cursos()->sync($request->cursos);
                 $proponente->update();
                 break;
             case "participante":
@@ -215,7 +215,7 @@ class UserController extends Controller
         $participante = Participante::where('user_id', '=', $id)->first();
 
         $naturezas = Natureza::orderBy('nome')->get();
-        $cursos = Curso::orderBy('nome')->get();
+        $cursos = Curso::get();
 
         return view('user.perfilUser')->with(['user' => $user,
                                               'adminResp' => $adminResp,
