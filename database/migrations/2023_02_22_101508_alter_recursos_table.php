@@ -14,12 +14,11 @@ class AlterRecursosTable extends Migration
     public function up()
     {
         Schema::table('recursos', function (Blueprint $table) {
-            $table->integer('tituloRecurso')->nullable()->change();
-            $table->integer('corpoRecurso')->nullable()->change();
-            $table->integer('statusAvaliacao')->nullable()->change();
+            $table->string('tituloRecurso')->nullable()->change();
+            $table->text('corpoRecurso')->nullable()->change();
+            $table->string('statusAvaliacao')->nullable()->change();
             $table->integer('trabalhoId')->nullable()->change();
             $table->integer('comissaoId')->nullable()->change();
-            $table->renameColumn('comissaoId', 'userId');
             $table->string('pdfRecurso')->nullable();
         });
     }
@@ -37,7 +36,6 @@ class AlterRecursosTable extends Migration
             $table->boolean('statusAvaliacao')->nullable(false)->change();
             $table->integer('trabalhoId')->nullable(false)->change();
             $table->integer('comissaoId')->nullable(false)->change();
-            $table->renameColumn('userId', 'comissaoId');
             $table->dropColumn('pdfRecurso');
         });
     }
