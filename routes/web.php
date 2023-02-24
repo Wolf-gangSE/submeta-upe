@@ -46,6 +46,11 @@ Route::group(['middleware' => ['isTemp', 'auth', 'verified']], function () {
     Route::get('/projetos-edital/{id}', 'ProponenteController@projetosEdital')->name('proponente.projetosEdital')->middleware('auth');
     Route::post('/proponente/edital/{edital_id}/projeto/{projeto_id}/solicitar_desligamento/{participante_id}', 'ProponenteController@solicitarDesligamento')->name('proponente.solicitar.desligamento');
 
+    //######### Recurso  ########################################
+    Route::get('proponente/recurso/{id}', 'RecursoController@index')->name('recurso.listar');
+    Route::post('proponente/recurso/criar', 'RecursoController@create')->name('recurso.criar');
+    Route::get('proponente/baixar/{id}', 'RecursoController@baixar')->name('recurso.baixar');
+
     //######## Rotas Avaliador  ####################################
     Route::prefix('avaliacaoRelatorio')->name('avaliacaoRelatorio.')->group(function () {
         Route::post('/atribuirAvaliadorPlano', 'AvaliacaoRelatorioController@atribuicaoAvaliador')->name('atribuicao.avaliador')->middleware('checkRoles:coordenador,administrador');
@@ -79,20 +84,20 @@ Route::group(['middleware' => ['isTemp', 'auth', 'verified']], function () {
         Route::get('/index', 'AvaliadorController@index')->name('index')->middleware('auth');
         Route::get('/trabalhos', 'AvaliadorController@visualizarTrabalhos')->name('visualizarTrabalho')->middleware('auth');
         Route::get('/planos', 'AvaliadorController@listarPlanos')->name('listarPlanos')->middleware('auth');
-        Route::post('/parecer', 'AvaliadorController@parecer')->name('parecer')->middleware('auth');
+        Route::any('/parecer', 'AvaliadorController@parecer')->name('parecer')->middleware('auth');
         Route::post('/parecer/plano', 'AvaliadorController@parecerPlano')->name('parecer.plano')->middleware('auth');
         Route::get('/editais', 'AvaliadorController@editais')->name('editais')->middleware('auth');
         Route::post('/Enviarparecer', 'AvaliadorController@enviarParecer')->name('enviarParecer')->middleware('auth');
         Route::post('/Enviarparecer/plano', 'AvaliadorController@enviarParecerPlano')->name('enviarParecerPlano')->middleware('auth');
         Route::get('/Resposta', 'AvaliadorController@conviteResposta')->name('conviteResposta')->middleware('auth');
 
-        Route::post('/parecerInterno', 'AvaliadorController@parecerInterno')->name('parecerInterno')->middleware('auth');
+        Route::any('/parecerInterno', 'AvaliadorController@parecerInterno')->name('parecerInterno')->middleware('auth');
         Route::post('/EnviarparecerInterno', 'AvaliadorController@enviarParecerInterno')->name('enviarParecerInterno')->middleware('auth');
 
-        Route::post('/parecerBarema', 'AvaliadorController@parecerBarema')->name('parecerBarema')->middleware('auth');
+        Route::any('/parecerBarema', 'AvaliadorController@parecerBarema')->name('parecerBarema')->middleware('auth');
         Route::post('/EnviarparecerBarema', 'AvaliadorController@enviarParecerBarema')->name('enviarParecerBarema')->middleware('auth');
 
-        Route::post('/parecerLink', 'AvaliadorController@parecerLink')->name('parecerLink')->middleware('auth');
+        Route::any('/parecerLink', 'AvaliadorController@parecerLink')->name('parecerLink')->middleware('auth');
         Route::post('/EnviarparecerLink', 'AvaliadorController@enviarParecerLink')->name('enviarParecerLink')->middleware('auth');
     });
 
@@ -257,6 +262,8 @@ Route::prefix('usuarios')->name('admin.')->group(function () {
     Route::get('/analisarProposta', 'AdministradorController@analisarProposta')->name('analisarProposta')->middleware('checkRoles:coordenador,administrador');
     Route::get('/showProjetos', 'AdministradorController@showProjetos')->name('showProjetos');
     Route::get('/showResultados', 'AdministradorController@showResultados')->name('showResultados')->middleware(['auth', 'verified']);
+    Route::get('/indexAvaliacao/{evento_id}', 'RecursoController@indexAvaliacao')->name('indexAvaliacao')->middleware('checkRoles:coordenador,administrador');
+    Route::post('/avaliarRecurso', 'RecursoController@avaliar')->name('avaliarRecurso')->middleware('checkRoles:coordenador,administrador');
 });
 
 Route::prefix('naturezas')->group(function () {
