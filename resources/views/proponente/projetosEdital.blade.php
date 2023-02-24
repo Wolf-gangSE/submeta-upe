@@ -145,7 +145,14 @@
                                   <a href="{{ route('trabalho.show', ['id' => $projeto->id]) }}" class="dropdown-item" style="text-align: center">
                                     Visualizar
                                   </a>
-                              @endif
+                                @endif
+
+                                @if(($projeto->evento->inicio_recurso <= $hoje) && ($hoje <= $projeto->evento->fim_recurso))
+                                <hr class="dropdown-hr">
+                                <a href="{{route('recurso.listar', ['id' => $projeto->id])}}" class="dropdown-item" style="text-align: center">
+                                    Recurso
+                                </a>
+                                @endif
 
                                 <hr class="dropdown-hr">
                                 <a href="{{route('planos.listar', ['id' => $projeto->id])}}" class="dropdown-item" style="text-align: center">
