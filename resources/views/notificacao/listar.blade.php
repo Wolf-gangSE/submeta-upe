@@ -136,6 +136,19 @@
                                                 @endif
                                             @endif
                                         </div>
+                                    @elseif ($notificacao->tipo == 8)
+                                        <div class="row">
+                                            @if ($notificacao->destinatario_id == Auth::user()->id)
+                                                <div class="col-sm-11">
+                                                    <h6 style="font-size: 18px">Recurso aceito para {{ $notificacao->trabalho->titulo }}</h6>
+                                                </div>
+                                                @if (!$notificacao->lido)
+                                                    <div class="col-sm-1">
+                                                        <p class="circulo"></p>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        </div>
                                     @endif
                                     <p style="font-size: 14px;     margin-bottom: 0;">
                                         Projeto: {{ $notificacao->trabalho->titulo }}</p>

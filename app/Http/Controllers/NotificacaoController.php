@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Certificado;
 use App\Notificacao;
+use App\Avaliador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -133,6 +134,25 @@ class NotificacaoController extends Controller
         } elseif ($notificacao->tipo == 6) {
             $trabalho = $notificacao->trabalho;
             return view('administrador.visualizarSolicitacaoCertificado', compact('notificacao', 'trabalho'));
+        } elseif ($notificacao->tipo == 8) {
+            $trabalho = $notificacao->trabalho;
+            $evento = $trabalho->evento;
+            $avaliador = Avaliador::where('user_id', Auth::user()->id)->first();
+            $tipoAvaliador = $avaliador->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso;
+
+            if ($evento->tipoAvaliacao == "form") {
+                if ($tipoAvaliador == 1) {
+                    return redirect()->route('avaliador.parecer', ['evento' => $evento->id, 'trabalho_id' => $trabalho->id]);
+                } else {
+                    return redirect()->route('avaliador.parecerInterno', ['evento' => $evento->id, 'trabalho_id' => $trabalho->id]);
+                }
+            } elseif ($evento->tipoAvaliacao == "campos") {
+                return redirect()->route('avaliador.parecerBarema', ['evento_id' => $evento->id, 'trabalho_id' => $trabalho->id]);
+            } elseif ($evento->tipoAvaliacao == "link") {
+                return redirect()->route('avaliador.parecerLink', ['evento_id' => $evento->id, 'trabalho_id' => $trabalho->id]);
+            } else {
+                return redirect()->route('avaliador.visualizarTrabalho', ['evento_id' => $evento->id]);
+            }
         }
     }
 
