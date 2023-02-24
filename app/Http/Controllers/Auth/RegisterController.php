@@ -146,7 +146,8 @@ class RegisterController extends Controller
             if ($data['outroCursoEstudante'] != null) {
                 $participante->curso = $data['outroCursoEstudante'];
             } else if (isset($data['cursoEstudante']) && $data['cursoEstudante'] != "Outro") {
-                $participante->curso = $data['cursoEstudante'];
+                $curso = Curso::where('id', $data['cursoEstudante'])->first();
+                $participante->curso = $curso;
             }
 
             $user->save();
@@ -184,7 +185,7 @@ class RegisterController extends Controller
             $user->participantes()->save($participante);
 
             if($data['perfil'] == 'Professor'){
-                $proponente->cursos()->sync($data['curso']);
+                $proponente->cursos()->sync($data['cursos']);
             }
         }
         
@@ -193,7 +194,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $cursos = Curso::orderBy('nome')->get();
+        $cursos = Curso::get();
         return view('auth.register', compact('cursos'));
     }
 }

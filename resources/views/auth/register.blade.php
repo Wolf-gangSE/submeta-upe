@@ -129,17 +129,21 @@
                             </div>
                             <div style="display:none" id="divCursos" class="col-md-12 mb-2">
                                 <label for="curso" class="col-form-label" style="font-weight:600;">{{ __('Cursos que Leciona') }}<span style="color: red; font-weight:bold;">*</span></label>
-                                <br>
-                                <div class="row col-md-12">
+                                
+                                <select multiple style="display: inline" class="form-control select" name="cursos[]" id="cursos">
                                     @foreach($cursos as $curso)
+                                        <option id="curso{{$curso->id}}" value="{{$curso->id}}">{{$curso->nome}}</option>
+                                    @endforeach
+                                </select>
+                               
+                                    <!-- @foreach($cursos as $curso)
                                     <div class="col-sm-6">
                                         <input type="checkbox" name="curso[]" id="curso{{$curso->id}}" value="{{$curso->id}}">
                                         <label class="form-check-label" for="curso{{$curso->id}}">
                                             {{ $curso->nome }}
                                         </label>
                                     </div>
-                                    @endforeach
-                                </div>
+                                    @endforeach -->
                             </div>
 
                             <!-- Proponente -->
@@ -280,13 +284,16 @@
                                     @component('componentes.input', ['label' => 'Curso'])
                                     <select style="display: inline" class="form-control" id='cursoEstudante' name="cursoEstudante" onchange="outroCurso(this)">
                                         <option value="" disabled selected hidden>-- Selecione uma opção--</option>
-                                        <option @if((old('curso')) == 'Bacharelado em Agronomia' ) selected @endif value="Bacharelado em Agronomia">Bacharelado em Agronomia</option>
+                                        @foreach($cursos as $curso)
+                                        <option @if(old('cursoEstudante') == $curso->nome) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
+                                        @endforeach
+                                        <!-- <option @if((old('curso')) == 'Bacharelado em Agronomia' ) selected @endif value="Bacharelado em Agronomia">Bacharelado em Agronomia</option>
                                         <option @if((old('curso')) == 'Bacharelado em Ciência da Computação' ) selected @endif value="Bacharelado em Ciência da Computação">Bacharelado em Ciência da Computação</option>
                                         <option @if((old('curso')) == 'Bacharelado em Engenharia de Alimentos' ) selected @endif value="Bacharelado em Engenharia de Alimentos">Bacharelado em Engenharia de Alimentos</option>
                                         <option @if((old('curso')) == 'Bacharelado em Medicina Veterinária' ) selected @endif value="Bacharelado em Medicina Veterinária">Bacharelado em Medicina Veterinária</option>
                                         <option @if((old('curso')) == 'Bacharelado em Zootecnia' ) selected @endif value="Bacharelado em Zootecnia">Bacharelado em Zootecnia</option>
                                         <option @if((old('curso')) == 'Licenciatura em Letras' ) selected @endif value="Licenciatura em Letras">Licenciatura em Letras</option>
-                                        <option @if((old('curso')) == 'Licenciatura em Pedagogia' ) selected @endif value="Licenciatura em Pedagogia">Licenciatura em Pedagogia</option>
+                                        <option @if((old('curso')) == 'Licenciatura em Pedagogia' ) selected @endif value="Licenciatura em Pedagogia">Licenciatura em Pedagogia</option> -->
                                         <option @if((old('curso')) == 'Outro' ) selected @endif value="Outro">Outro</option>
                                     </select>
                                     @error('curso')
@@ -514,6 +521,7 @@
 
 
         } else {
+            console.log("entrou");
             divVinculo.style.display = "none";
             divTitulacaoMax.style.display = "none";
             divAnoTitulacao.style.display = "none";
