@@ -109,15 +109,14 @@
                                                                    @if($avaliacao->nota != null) value="{{$avaliacao->nota}}" @endif>
                                                         </div>
                                                     </div>
+                                                    @if($evento->formAvaliacaoRelatorio != null)
                                                     <div class="row" style="margin-top: 10px">
                                                         <label for="lattes" class="col-form-label font-tam"
                                                                style="font-weight: bold;margin-right: 5px;">{{ __('Formulário de Avaliação: ') }}</label>
 
-                                                        @if($evento->formAvaliacaoRelatorio != null)
                                                             <a href="{{route('download', ['file' => $evento->formAvaliacaoRelatorio])}}" target="_new"  >
                                                                 <img class="" src="{{asset('img/icons/pdf.ico')}}" style="width:40px">
                                                             </a>
-                                                        @endif
                                                     </div>
                                                     <div class="row" style="margin-top: 10px">
                                                         <label for="lattes" class="col-form-label font-tam"
@@ -135,6 +134,7 @@
 													</span>
                                                         @enderror
                                                     </div>
+                                                    @endif
 
                                                     <div class="row">
                                                         <label for="lattes" class="col-form-label font-tam"

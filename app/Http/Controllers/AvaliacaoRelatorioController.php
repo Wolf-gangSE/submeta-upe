@@ -106,7 +106,7 @@ class AvaliacaoRelatorioController extends Controller
 
                 if(Avaliador::where('user_id',$avaliadoresId[$i])->get()->count()==0){
                     $userTemp = User::find($avaliadoresId[$i]);
-                    if($userTemp->instituicao==null || $userTemp->instituicao == "UFAPE" || $userTemp->instituicao == "Universidade Federal do Agreste de Pernambuco"){
+                    if($userTemp->instituicao==null || $userTemp->instituicao == "UPE" || $userTemp->instituicao == "Universidade de Pernambuco"){
                         $tipoAvaliador = "Interno";
                     }else{
                         $tipoAvaliador = "Externo";
@@ -137,7 +137,7 @@ class AvaliacaoRelatorioController extends Controller
 
                     if(Avaliador::where('user_id',$avaliadoresId[$i])->get()->count()==0){
                         $userTemp = User::find($avaliadoresId[$i]);
-                        if($userTemp->instituicao==null || $userTemp->instituicao == "UFAPE" || $userTemp->instituicao == "Universidade Federal do Agreste de Pernambuco"){
+                        if($userTemp->instituicao==null || $userTemp->instituicao == "UPE" || $userTemp->instituicao == "Universidade de Pernambuco"){
                             $tipoAvaliador = "Interno";
                         }else{
                             $tipoAvaliador = "Externo";

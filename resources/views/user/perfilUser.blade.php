@@ -78,10 +78,10 @@
                                     <label class="col-form-label">{{ __('Instituição de Vínculo*') }}</label>
                                     <select style="display: inline" onchange="showInstituicao()" class="form-control @error('instituicaoSelect') is-invalid @enderror" name="instituicaoSelect" id="instituicaoSelect">
                                         <option value="" disabled hidden>-- Instituição --</option>
-                                        @if($user->instituicao != "UFAPE")
+                                        @if($user->instituicao != "UPE")
                                         <option value="{{ $user->instituicao }}" selected>{{ $user->instituicao }}</option>
                                         @endif
-                                        <option @if( $user->instituicao == "UFAPE") selected @endif value="UFAPE">Universidade Federal do Agreste de Pernambuco - UFAPE</option>
+                                        <option @if( $user->instituicao == "UPE") selected @endif value="UPE">Universidade de Pernambuco - UPE</option>
                                         <option @if(old('instituicaoSelect')=="Outra" ) selected @endif value="Outra">Outra</option>
                                     </select>
 
@@ -97,15 +97,11 @@
                                 <label for="curso" class="col-form-label">{{ __('Cursos em que leciona*:') }}</label>
                                 <br>
                                 <div class="row col-md-12">
-                                    @foreach($cursos as $curso)
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" name="curso[]" id="curso{{$curso->id}}" value="{{$curso->id}}" @if((empty(old('curso')) && $proponente->cursos->contains($curso->id)) || (!empty(old('curso')) && in_array($curso->id, old('curso')))) checked
-                                        @endif>
-                                        <label class="form-check-label" for="curso{{$curso->id}}">
-                                            {{ $curso->nome }}
-                                        </label>
-                                    </div>
-                                    @endforeach
+                                    <select multiple style="display: inline" class="form-control select" name="cursos[]" id="cursos">
+                                        @foreach($cursos as $curso)
+                                            <option @if((empty(old('curso')) && $proponente->cursos->contains($curso->id)) || (!empty(old('curso')) && in_array($curso->id, old('curso')))) selected @endif id="curso{{$curso->id}}" value="{{$curso->id}}">{{$curso->nome}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             @endif
@@ -491,10 +487,10 @@
                 <label class="col-form-label">{{ __('Instituição de Vínculo*') }}</label>
 <select style="display: inline" onchange="showInstituicao()" class="form-control @error('instituicaoSelect') is-invalid @enderror" name="instituicaoSelect" id="instituicaoSelect">
     <option value="" disabled hidden>-- Instituição --</option>
-    @if($user->instituicao != "UFAPE")
+    @if($user->instituicao != "UPE")
     <option value="{{ $user->instituicao }}" selected>{{ $user->instituicao }}</option>
     @endif
-    <option @if( $user->instituicao == "UFAPE") selected @endif value="UFAPE">Universidade Federal do Agreste de Pernambuco - UFAPE</option>
+    <option @if( $user->instituicao == "UPE") selected @endif value="UPE">Universidade de Pernambuco - UPE</option>
     <option @if(old('instituicaoSelect')=="Outra" ) selected @endif value="Outra">Outra</option>
 </select>
 
@@ -914,7 +910,7 @@
         if (instituicaoSelect.value === "Outra") {
             document.getElementById("displayOutro").style.display = "block";
             instituicao.parentElement.style.display = '';
-        } else if (instituicaoSelect.value === "UFAPE") {
+        } else if (instituicaoSelect.value === "UPE") {
             document.getElementById("displayOutro").style.display = "none";
         }
     }

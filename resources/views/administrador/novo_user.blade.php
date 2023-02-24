@@ -43,7 +43,7 @@
                 <label class="col-form-label">{{ __('Instituição de Vínculo*') }}</label>
                 <select style="display: inline" onchange="showInstituicao()" class="form-control @error('instituicaoSelect') is-invalid @enderror" name="instituicaoSelect" id="instituicaoSelect">
                     <option value="" disabled selected hidden>-- Instituição --</option>
-                    <option @if(old('instituicaoSelect') == "UFAPE") selected @endif value="UFAPE">Universidade Federal do Agreste de Pernambuco - UFAPE</option>
+                    <option @if(old('instituicaoSelect') == "UPE") selected @endif value="UPE">Universidade de Pernambuco - UPE</option>
                     <option @if(old('instituicaoSelect') == "Outra") selected @endif value="Outra">Outra</option>
                 </select>
             
@@ -361,7 +361,7 @@
         if(instituicaoSelect.value === "Outra"){        
             instituicaoSelect.parentElement.className = 'col-md-2';
             instituicao.parentElement.style.display = '';
-        }else if(instituicaoSelect.value === "UFAPE"){
+        }else if(instituicaoSelect.value === "UPE"){
             instituicaoSelect.parentElement.className = 'col-md-6';
             instituicao.parentElement.style.display = 'none';
         }

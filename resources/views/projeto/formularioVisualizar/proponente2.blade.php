@@ -20,9 +20,9 @@
             @endif
           </div>
           
-          @if( (Auth::user()->avaliadors != null) && (Auth::user()->avaliadors->tipo != 'Externo' || Auth::user()->avaliadors->tipo == null)
+          <!-- @if( (Auth::user()->avaliadors != null) && (Auth::user()->avaliadors->tipo != 'Externo' || Auth::user()->avaliadors->tipo == null)
           && ($edital->natureza_id != 3 || $projeto->status != "rascunho"))
-          <!-- só pagar oq tem dps do || para funcionar para submetido e rascunho! EXTENSÃO(3)!!! -->
+          !-- só pagar oq tem dps do || para funcionar para submetido e rascunho! EXTENSÃO(3)!!! --
           <div class="col-md-12">
             <br>
             <b style="color: #4D4D4D;">Grupo de Pesquisa: </b>
@@ -38,7 +38,7 @@
               <a style="color: #4D4D4D;">{{$projeto->pontuacaoPlanilha}}</a>
             </div>
           @endif
-          @endif
+          @endif -->
 
           @if($edital->natureza_id == 3)
             <div class="col-md-12">

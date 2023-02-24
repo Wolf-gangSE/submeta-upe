@@ -84,15 +84,15 @@ class UpdateTrabalho extends FormRequest
 
             //$rules = [];
             if($evento->tipo!="PIBEX"){
-                $rules['anexoPlanilhaPontuacao']       = [Rule::requiredIf($projeto->anexoPlanilhaPontuacao == null)];
-                $rules['anexoLattesCoordenador']       = [Rule::requiredIf($projeto->anexoLattesCoordenador == null), 'mimes:pdf'];
-                $rules['anexoGrupoPesquisa']           = [Rule::requiredIf($projeto->anexoGrupoPesquisa == null), 'mimes:pdf'];
+                $rules['anexoPlanilhaPontuacao']       = [];
+                $rules['anexoLattesCoordenador']       = ['mimes:pdf'];
+                $rules['anexoGrupoPesquisa']           = ['mimes:pdf'];
                 // anexoAutorizacaoComiteEtica = SIM
                 $rules['anexoAutorizacaoComiteEtica']  = [Rule::requiredIf($this->autorizacaoFlag == 'sim' && $projeto->anexoAutorizacaoComiteEtica == null)];
                 // justificativaAutorizacaoEtica = NAO
                 $rules['justificativaAutorizacaoEtica'] = [Rule::requiredIf($this->autorizacaoFlag == 'nao' && $projeto->justificativaAutorizacaoEtica == null)];
-                $rules['pontuacaoPlanilha']            = ['required', 'string'];
-                $rules['linkGrupoPesquisa']            = ['required', 'string'];
+                $rules['pontuacaoPlanilha']            = ['string'];
+                $rules['linkGrupoPesquisa']            = ['string'];
             }
             if($evento->nome_docExtra != null){
                 $rules['anexo_docExtra']               = [Rule::requiredIf($evento->obrigatoriedade_docExtra == true && $evento->obrigatoriedade_docExtra == null),'file', 'mimes:zip,doc,docx,pdf', 'max:2048'];

@@ -860,7 +860,7 @@ class AdministradorController extends Controller
         $aval->save();
         $user = $aval->user()->first();
 
-        $subject = 'Convite para avaliar projetos da UFAPE';
+        $subject = 'Convite para avaliar projetos da UPE';
         Mail::to($user->email)
                 ->send(new EmailParaUsuarioNaoCadastrado($user->name, '  ', 'Avaliador-Cadastrado', $evento->nome, ' ', $subject, $evento->tipo, $evento->natureza_id));
 
@@ -884,14 +884,14 @@ class AdministradorController extends Controller
         $aval = Avaliador::where('id', $request->avaliador_id)->first();
         $trabalho = Trabalho::where('id', $request->trabalho_id)->first();
         if ($request->flag == 0) {
-            if (($aval->tipo == 'Interno' && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3) || ($aval->tipo == null && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3 && ($aval->user->instituicao == 'UFAPE' || $aval->user->instituicao == 'Universidade Federal do Agreste de Pernambuco'))) {
+            if (($aval->tipo == 'Interno' && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3) || ($aval->tipo == null && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3 && ($aval->user->instituicao == 'UPE' || $aval->user->instituicao == 'Universidade de Pernambuco'))) {
                 $aval->trabalhos()
                     ->updateExistingPivot($trabalho->id, ['acesso' => 2]);
             } else {
                 $aval->trabalhos()->detach($trabalho);
             }
         } else {
-            if (($aval->tipo == 'Interno' && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3) || ($aval->tipo == null && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3 && ($aval->user->instituicao == 'UFAPE' || $aval->user->instituicao == 'Universidade Federal do Agreste de Pernambuco'))) {
+            if (($aval->tipo == 'Interno' && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3) || ($aval->tipo == null && $aval->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso == 3 && ($aval->user->instituicao == 'UPE' || $aval->user->instituicao == 'Universidade de Pernambuco'))) {
                 $aval->trabalhos()
                     ->updateExistingPivot($trabalho->id, ['acesso' => 1]);
             } else {
@@ -941,7 +941,7 @@ class AdministradorController extends Controller
         if ($request->avaliadores_externos_id != null) {
             foreach ($request->avaliadores_externos_id as $avaliador) {
                 $aval = Avaliador::find($avaliador);
-                if (Avaliador::where('id', $avaliador)->where('tipo', 'Interno')->count() > 0 || (Avaliador::where('id', $avaliador)->where('tipo', null)->count() > 0 && (($aval->user->instituicao == 'UFAPE' || $aval->user->instituicao == 'Universidade Federal do Agreste de Pernambuco')))) {
+                if (Avaliador::where('id', $avaliador)->where('tipo', 'Interno')->count() > 0 || (Avaliador::where('id', $avaliador)->where('tipo', null)->count() > 0 && (($aval->user->instituicao == 'UPE' || $aval->user->instituicao == 'Universidade de Pernambuco')))) {
                     if ($aval->trabalhos()->where('trabalho_id', $trabalho->id)->first() != null) {
                         $aval->trabalhos()
                             ->updateExistingPivot($trabalho->id, ['acesso' => 3]);
@@ -990,8 +990,8 @@ class AdministradorController extends Controller
         $user = User::where('email', $emailAvaliador)->first();
         $areaTematica = AreaTematica::find($request->areasTemeticas);
 
-        if ($request->instituicao == 'ufape') {
-            $nomeInstituicao = 'Universidade Federal do Agreste de Pernambuco';
+        if ($request->instituicao == 'upe') {
+            $nomeInstituicao = 'Universidade de Pernambuco';
             $externoInterno = 'Interno';
         } else {
             $nomeInstituicao = $request->outra;
@@ -999,12 +999,12 @@ class AdministradorController extends Controller
         }
         if (isset($user)) {
             $passwordTemporario = Str::random(8);
-            $subject = 'Convite para avaliar projetos da UFAPE';
+            $subject = 'Convite para avaliar projetos da UPE';
             Mail::to($emailAvaliador)
                 ->send(new EmailParaUsuarioNaoCadastrado($nomeAvaliador, '  ', 'Avaliador-Cadastrado', $evento->nome, $passwordTemporario, $subject, $evento->tipo, $evento->natureza_id));
         } else {
             $passwordTemporario = Str::random(8);
-            $subject = 'Convite para avaliar projetos da UFAPE';
+            $subject = 'Convite para avaliar projetos da UPE';
             Mail::to($emailAvaliador)
                 ->send(new EmailParaUsuarioNaoCadastrado($nomeAvaliador, '  ', 'Avaliador', $evento->nome, $passwordTemporario, $subject, $evento->tipo, $evento->natureza_id));
             $user = User::create([
@@ -1041,7 +1041,7 @@ class AdministradorController extends Controller
             $avaliador->areaTematicas()->sync($areaTematica);
         }
 
-        if ($request->instituicao == 'ufape') {
+        if ($request->instituicao == 'UPE') {
             $trabalho->avaliadors()->attach($avaliador, ['acesso' => 2]);
             $evento->avaliadors()->syncWithoutDetaching($avaliador);
         } else {
@@ -1081,7 +1081,7 @@ class AdministradorController extends Controller
         $notificacao->save();
 
         $trabalho = Trabalho::where('id', $request->trabalho_id)->first();
-        $subject = 'Convite para avaliar projetos da UFAPE - Reenvio';
+        $subject = 'Convite para avaliar projetos da UPE - Reenvio';
         Mail::to($avaliador->user->email)
             ->send(new EmailLembrete($avaliador->user->name, $subject, $trabalho->titulo, $evento->nome, $evento->tipo, $evento->natureza_id, $evento->formAvaliacaoExterno, $avaliador->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso));
 
@@ -1097,8 +1097,8 @@ class AdministradorController extends Controller
         $user = User::where('email', $emailAvaliador)->first();
         $areaTematica = AreaTematica::find($request->areasTemeticas);
         
-        if ($request->instituicao == 'ufape') {
-            $nomeInstituicao = 'Universidade Federal do Agreste de Pernambuco';
+        if ($request->instituicao == 'UPE') {
+            $nomeInstituicao = 'Universidade de Pernambuco';
             $externoInterno = 'Interno';
         } else {
             $nomeInstituicao = $request->outra;
@@ -1112,12 +1112,12 @@ class AdministradorController extends Controller
 
         if (isset($user)) {
             $passwordTemporario = Str::random(8);
-            $subject = 'Convite para avaliar projetos da UFAPE';
+            $subject = 'Convite para avaliar projetos da UPE';
             Mail::to($emailAvaliador)
                 ->send(new EmailParaUsuarioNaoCadastrado($nomeAvaliador, '  ', 'Avaliador-Cadastrado', $evento->nome, $passwordTemporario, $subject, $evento->tipo, $evento->natureza_id));
         } else {
             $passwordTemporario = Str::random(8);
-            $subject = 'Convite para avaliar projetos da UFAPE';
+            $subject = 'Convite para avaliar projetos da UPE';
             Mail::to($emailAvaliador)
                 ->send(new EmailParaUsuarioNaoCadastrado($nomeAvaliador, '  ', 'Avaliador', $evento->nome, $passwordTemporario, $subject, $evento->tipo, $evento->natureza_id));
             $user = User::create([
@@ -1165,7 +1165,7 @@ class AdministradorController extends Controller
         $avaliador = Avaliador::where('id', $request->avaliador_id)->first();
         $user = $avaliador->user()->first();
 
-        $subject = 'Convite para avaliar projetos da UFAPE - Reenvio';
+        $subject = 'Convite para avaliar projetos da UPE - Reenvio';
         Mail::to($user->email)
                 ->send(new EmailParaUsuarioNaoCadastrado($user->name, '  ', 'Avaliador-Cadastrado', $evento->nome, ' ', $subject, $evento->tipo, $evento->natureza_id));
 
@@ -1178,11 +1178,11 @@ class AdministradorController extends Controller
 
     public function baixarModeloAvaliacao()
     {
-        $file = public_path().'/ModeloFormularioAvaliadorExternoPIBIC.docx';
+        $file = public_path().'/ModeloFormularioAvaliadorExterno.docx';
         $headers = ['Content-Type: application/docx'];
         ob_end_clean();
 
-        return response()->download($file, 'ModeloFormularioAvaliadorExternoPIBIC.docx', $headers);
+        return response()->download($file, 'ModeloFormularioAvaliadorExterno.docx', $headers);
     }
 
     public function imprimirResultados(Request $request)

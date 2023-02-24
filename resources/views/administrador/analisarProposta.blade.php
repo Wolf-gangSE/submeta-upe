@@ -122,7 +122,7 @@
                                 @endif
                             </div>
 
-                            @if($evento->tipo != "PIBEX")
+                            <!-- @if($evento->tipo != "PIBEX")
                                 <div class="col-md-12">
                                     <br>
                                     <b style="color: #4D4D4D;">Grupo de Pesquisa: </b>
@@ -136,7 +136,7 @@
                                     <b style="color: #4D4D4D;">Valor da Planilha de Pontuação: </b>
                                     <a style="color: #4D4D4D;">{{$trabalho->pontuacaoPlanilha}}</a>
                                 </div>
-                            @endif
+                            @endif -->
                             @if($trabalho->modalidade != null)
                                 <div class="col-md-12">
                                     <br>
@@ -448,7 +448,7 @@
 
                             </div>
 
-                            @if($evento->tipo != "PIBEX")
+                            <!-- @if($evento->tipo != "PIBEX")
                                 <div class="col-sm-4">
                                     <label for="anexoLatterCoordenador" class="col-form-label font-tam"
                                            style="font-weight: bold">{{ __('Lattes do Coordenador: ') }}</label>
@@ -458,7 +458,7 @@
                                                                                                                 alt=""></a>
 
                                 </div>
-                            @endif
+                            @endif -->
 
                             @if($evento->tipo != "PIBEX")
                                 <div class="col-sm-4">
@@ -476,7 +476,7 @@
                                 </div>
                             @endif
 
-                            @if($evento->tipo != "PIBEX")
+                            <!-- @if($evento->tipo != "PIBEX")
                                 <div class="col-sm-4">
                                     <label for="anexoPlanilha" class="col-form-label font-tam"
                                            style="font-weight: bold">{{ __('Planilha de Pontuação: ') }}</label>
@@ -508,7 +508,7 @@
                                            style="font-weight: bold">{{ __('Câmara ou Conselho Pertinente: ') }}</label>
                                     <a href="{{ route('baixar.anexo.consu', ['id' => $trabalho->id]) }}"><img class="" src="{{asset('img/icons/pdf.ico')}}" style="width:40px" alt=""></a>
                                 </div>
-                            @endif
+                            @endif -->
                             @if($evento->nome_docExtra != null)
                                 {{-- Documento Extra --}}
                                 <div class="col-sm-4">
@@ -987,7 +987,7 @@
 
                                                         @foreach ($trabalho->avaliadors as $avaliador)
                                                             @if(($avaliador->tipo == "Interno" && $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1) ||
-                                                                (($avaliador->user->instituicao == "UFAPE" || $avaliador->user->instituicao == "Universidade Federal do Agreste de Pernambuco") && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1) ))
+                                                                (($avaliador->user->instituicao == "UPE" || $avaliador->user->instituicao == "Universidade de Pernambuco") && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1) ))
                                                                 <option value="{{ $avaliador->id }}">{{ $avaliador->user->name }}
                                                                     > {{$avaliador->user->instituicao ?? 'Instituição Indefinida'}}
                                                                     > {{$avaliador->area->nome ?? 'Indefinida'}}
@@ -995,7 +995,7 @@
                                                             @endif
                                                         @endforeach
                                                         @foreach ($trabalho->aval as $avaliador)
-                                                            @if($avaliador->tipo == "Interno" || $avaliador->user->instituicao == "UFAPE" || $avaliador->user->instituicao == "Universidade Federal do Agreste de Pernambuco")
+                                                            @if($avaliador->tipo == "Interno" || $avaliador->user->instituicao == "UPE" || $avaliador->user->instituicao == "Universidade de Pernambuco")
                                                                 <option value="{{ $avaliador->id }}"> {{ $avaliador->user->name }}
                                                                      > {{$avaliador->user->instituicao ?? 'Instituição Indefinida'}}
                                                                      > {{$avaliador->area->nome ?? 'Indefinida'}}
@@ -1058,7 +1058,7 @@
                         </div>
                         <div class="row justify-content-start" style="alignment: center">
                             @foreach($trabalho->avaliadors as $avaliador)
-                                @if(($avaliador->tipo == 'Interno' && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 2 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3)) || (($avaliador->user->instituicao == "UFAPE" || $avaliador->user->instituicao == "Universidade Federal do Agreste de Pernambuco") && $avaliador->tipo == null && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 2 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3)))
+                                @if(($avaliador->tipo == 'Interno' && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 2 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3)) || (($avaliador->user->instituicao == "UPE" || $avaliador->user->instituicao == "Universidade de Pernambuco") && $avaliador->tipo == null && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 2 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3)))
                                     @if ($evento->tipoAvaliacao == 'form')
                                         <div class="col-sm-1">
                                             <img src="{{asset('img/icons/usuario.svg')}}" style="width:60px" alt="">
@@ -1154,7 +1154,7 @@
                         </div>
                         <div class="row justify-content-start" style="alignment: center">
                             @foreach($trabalho->avaliadors as $avaliador)
-                                @if( ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null && $avaliador->tipo == "Externo") || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3 || (($avaliador->user->instituicao != "UFAPE" && $avaliador->user->instituicao != "Universidade Federal do Agreste de Pernambuco") && $avaliador->tipo == null && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3)))
+                                @if( ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null && $avaliador->tipo == "Externo") || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3 || (($avaliador->user->instituicao != "UPE" && $avaliador->user->instituicao != "Universidade de Pernambuco") && $avaliador->tipo == null && ($avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == null || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 1 || $avaliador->trabalhos()->where("trabalho_id",$trabalho->id)->first()->pivot->acesso == 3)))
                                     @if ($evento->tipoAvaliacao == 'form')
                                         <div class="col-sm-1">
                                             <img src="{{asset('img/icons/usuario.svg')}}" style="width:60px" alt="">
@@ -1733,7 +1733,7 @@
                                 <select class="form-control" name="instituicao" id="membro" required
                                         onchange="mostrarDiv(this)">
                                     <option value="" disabled>-- Selecione a instituição --</option>
-                                    <option value="ufape">Universidade Federal do Agreste de Pernambuco</option>
+                                    <option value="UPE">Universidade de Pernambuco</option>
                                     <option value="outra">Outra</option>
                                 </select>
                             </div>
@@ -2211,7 +2211,7 @@
             if (select.value == "outra") {
                 document.getElementById('div-outra').style.display = "block";
                 $("#outra").prop('required', true);
-            } else if (select.value == "ufape") {
+            } else if (select.value == "UPE") {
                 document.getElementById('div-outra').style.display = "none";
                 $("#outra").prop('required', false);
             }

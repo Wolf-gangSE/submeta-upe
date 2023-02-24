@@ -14,22 +14,7 @@
                     </p>
                 </div>
                 <br>
-                {{-- <div class="row position-text">
-                    <div class="alert alert-danger" role="alert">
-                        <p>
-                           <strong>INFORME</strong>
-                        </p>
-                        <p>
-                            <strong>Comitês Internos do PIBIC e do PIBITI comunicam prorrogração do prazo de envio de propostas</strong>
-                        </p>
-                        <p>
-                            Os Comitês Internos do PIBIC e do PIBITI da UFAPE informam que o prazo para envio das propostas referentes aos Editais PIBIC/PIC e PIBITI UFAPE 2021/2022 foi prorrogado para o dia 07/07/2021 até às 23h59min (horário de Brasília).
-                        </p>
-                        <p>
-                            Não serão aceitas propostas submetidas após este prazo.
-                        </p>
-                    </div>
-                </div> --}}
+                
             </div>
             <br>
             <div class="col-sm-6" style=" position: relative; top: 50px; padding: 25px;">

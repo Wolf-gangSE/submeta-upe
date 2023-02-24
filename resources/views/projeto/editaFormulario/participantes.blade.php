@@ -379,9 +379,9 @@
                                                                                     selected
                                                                                     hidden>-- Instituição --</option>
                                                                                 <option
-                                                                                    @if ((old('instituicao')[$i] ?? ($participante->user->instituicao ?? '')) == 'UFAPE') selected @endif
-                                                                                    value="UFAPE">Universidade Federal do
-                                                                                    Agreste de Pernambuco - UFAPE</option>
+                                                                                    @if ((old('instituicao')[$i] ?? ($participante->user->instituicao ?? '')) == 'UPE') selected @endif
+                                                                                    value="UPE">Universidade Federal do
+                                                                                    Agreste de Pernambuco - UPE</option>
                                                                                 <option
                                                                                     @if ((old('instituicao')[$i] ?? ($participante->user->instituicao ?? '')) == 'Outra') selected @endif
                                                                                     value="Outra">Outra</option>

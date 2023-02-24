@@ -28,11 +28,14 @@
             <div class="col-sm-5">
                 <label for="tipo" class="col-form-label">{{ __('Tipo:') }}<span style="color:red; font-weight:bold;">*</span></label>
                 <select id="tipo" type="text" class="form-control @error('tipo') is-invalid @enderror" name="tipo" value="{{ old('tipo') }}" required>
-                    <option @if(old('tipo')=='PIBIC' ) selected @endif value="PIBIC">PIBIC</option>
+                    <option @if(old('tipo') == "ComponentesCurriculares")) selected @endif value="ComponentesCurriculares">Apoio à Vivência de Componentes Curriculares</option>
+                    <option @if(old('tipo') == "InovacaoPedagogica")) selected @endif value="InovacaoPedagogica">Inovação Pedagógica</option>
+                    <option @if(old('tipo') == "ApoioPsico")) selected @endif value="InovacaoPedagogica">Apoio Psicossocial ou Psicopedagógico</option>
+                    <!-- <option @if(old('tipo')=='PIBIC' ) selected @endif value="PIBIC">PIBIC</option>
                     <option @if(old('tipo')=='PIBIC-EM' ) selected @endif value="PIBIC-EM">PIBIC-EM</option>
                     <option @if(old('tipo')=='PIBIC-AF' ) selected @endif value="PIBIC-AF">PIBIC-AF</option>
                     <option @if(old('tipo')=='PIBITI' ) selected @endif value="PIBITI">PIBITI</option>
-                    <option @if(old('tipo')=='PIBEX' ) selected @endif value="PIBEX">PIBEX</option>
+                    <option @if(old('tipo')=='PIBEX' ) selected @endif value="PIBEX">PIBEX</option> -->
                 </select>
 
                 @error('tipo')
@@ -77,7 +80,7 @@
                 <input type="checkbox" name="check_docExtra" id="check_docExtra" onclick="showDocumentoExtra()" style="margin-left: 5px" {{ old('check_docExtra') ? 'checked' : ''}}>
             </div>
 
-            <div class="col-sm-5">
+            <!-- <div class="col-sm-5">
                 <label for="consu" id="decisaoCamara" class="col-form-label">{{ __('Decisão da Câmara ou Conselho Pertinente: Obrigatório? ') }} </label>
                 <input type="checkbox" name="consu" id="consu" style="margin-left: 5px" {{ old('consu') ? 'checked' : ''}}>
                 @error('consu')
@@ -85,7 +88,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
+            </div> -->
             <div class="col-sm-3">
                 <label for="cotaDoutor" class="col-form-label">{{ __('Cota para recém doutor: ') }}</label>
                 <input type="checkbox" name="cotaDoutor" id="cotaDoutor" style="margin-left: 5px" {{ old('cotaDoutor') ? 'checked' : ''}}>
