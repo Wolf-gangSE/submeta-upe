@@ -95,7 +95,6 @@ class EventoController extends Controller
                 'docTutorial' => ['file', 'max:2048', new ExcelRule($request->file('docTutorial'))],
             ]);
         }
-
         //--Salvando os anexos da submissão temporariamente
         $evento = $this->armazenarAnexosTemp($request);
 
@@ -134,7 +133,6 @@ class EventoController extends Controller
                 'inicioProjeto'       => ['required', 'date'],
                 'fimProjeto'          => ['required', 'date'],
                 'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null), 'max:255'],
-                'pdfRelatorio'      => [($request->pdfRelatorioPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
                 'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
                 'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
                 //'modeloDocumento'     => [],
@@ -169,7 +167,6 @@ class EventoController extends Controller
             'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
             'inicioProjeto'       => ['required', 'date', 'after:yesterday'],
             'fimProjeto'          => ['required', 'date', 'after_or_equal:fimSubmissao'],
-            'pdfRelatorio'      => [($request->pdfRelatorioPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
             'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
             'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
             //'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
