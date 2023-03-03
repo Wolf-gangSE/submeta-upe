@@ -37,7 +37,7 @@ class EventoCriado extends Mailable
     public function build()
     {
         
-        return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+        return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
                     ->subject($this->subject)
                     ->view('emails.emailEventoCriado')
                     ->with([

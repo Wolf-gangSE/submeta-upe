@@ -43,7 +43,7 @@ class EmailLembrete extends Mailable
     {
         $file = storage_path('app').'/'.$this->arquivo;
         if($this->acesso == '1' || $this->acesso == '3'){
-            return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+            return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
                 ->subject($this->subject)
                 ->view('emails.emailLembreteRevisor')
                 ->with([
@@ -56,7 +56,7 @@ class EmailLembrete extends Mailable
 
                 ])->attach($file);
         }
-        return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+        return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
             ->subject($this->subject)
             ->view('emails.emailLembreteRevisor')
             ->with([

@@ -26,7 +26,7 @@ class SolicitacaoSubstituicao extends Mailable{
     public function build(){
 
         if($this->tipo==null){
-            return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+            return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
                 ->subject('Sistema Submeta - Solicitação de substituição')
                 ->view('emails.solicitacaoSubstituicao')
                 ->with([
@@ -37,7 +37,7 @@ class SolicitacaoSubstituicao extends Mailable{
                     'status' => $this->status
                 ]);
         }else{
-            return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+            return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
                 ->subject('Sistema Submeta - Resultado da avaliação de pedido de substituição de estudante')
                 ->view('emails.solicitacaoSubstituicao')
                 ->with([

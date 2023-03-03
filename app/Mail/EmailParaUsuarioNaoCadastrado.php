@@ -43,7 +43,7 @@ class EmailParaUsuarioNaoCadastrado extends Mailable
     {
         if($this->nomeFuncao != 'Participante'){
                 
-                return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+                return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
                         ->subject($this->subject)
                         ->view('emails.usuarioNaoCadastrado')
                         ->with([
@@ -57,7 +57,7 @@ class EmailParaUsuarioNaoCadastrado extends Mailable
                             
                         ]);
         }else{
-            return $this->from('lmtsteste@gmail.com', 'Submeta - LMTS')
+            return $this->from('editais.prograd@upe.br', 'Submeta - UPE')
                         ->subject($this->subject)
                         ->view('emails.usuarioNaoCadastrado')
                         ->with([
