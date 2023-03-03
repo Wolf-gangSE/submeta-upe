@@ -18,7 +18,7 @@ class UsuarioSeeder extends Seeder
 
           'name'=>'Prograd',
           'email'=>'editais.prograd@upe.br',
-          'password'=>Hash::make('12345678'),
+          'password'=>Hash::make('Edita12_up3'),
           'tipo'=>'administrador',
           'email_verified_at'=>'2022-01-01'
         ]);
