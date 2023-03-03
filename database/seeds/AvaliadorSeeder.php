@@ -12,13 +12,13 @@ class AvaliadorSeeder extends Seeder
     public function run()
     {
       
-      $user_id = DB::table('users')->where('name','Avaliador1')->pluck('id');
+      // $user_id = DB::table('users')->where('name','Avaliador1')->pluck('id');
 
-      DB::table('avaliadors')->insert([
-        'user_id' => $user_id[0],
-        'area_id' => 1,
-        'tipo' => 'Externo',
-      ]);
+      // DB::table('avaliadors')->insert([
+      //   'user_id' => $user_id[0],
+      //   'area_id' => 1,
+      //   'tipo' => 'Externo',
+      // ]);
 
       // $aval = App\Avaliador::find(1);
       // $evento = App\Evento::find(1);
@@ -33,13 +33,13 @@ class AvaliadorSeeder extends Seeder
       // $aval->save();
   
 
-      $user_id = DB::table('users')->where('name','Avaliador2')->pluck('id');
+      // $user_id = DB::table('users')->where('name','Avaliador2')->pluck('id');
 
-      DB::table('avaliadors')->insert([
-        'user_id' => $user_id[0],
-        'area_id' => 1,
-        'tipo' => 'Externo',
-      ]);
+      // DB::table('avaliadors')->insert([
+      //   'user_id' => $user_id[0],
+      //   'area_id' => 1,
+      //   'tipo' => 'Externo',
+      // ]);
       // $aval = App\Avaliador::find(2);
       // $evento = App\Evento::find(1);
       // $trabalho = App\Trabalho::find(1);
@@ -49,13 +49,13 @@ class AvaliadorSeeder extends Seeder
       // $aval->eventos()->attach($evento);
       // $aval->save();
 
-      $user_id = DB::table('users')->where('name','Avaliador3')->pluck('id');
+      // $user_id = DB::table('users')->where('name','Avaliador3')->pluck('id');
 
-      DB::table('avaliadors')->insert([
-        'user_id' => $user_id[0],
-        'area_id' => 1,
-        'tipo' => 'Externo',
-      ]);
+      // DB::table('avaliadors')->insert([
+      //   'user_id' => $user_id[0],
+      //   'area_id' => 1,
+      //   'tipo' => 'Externo',
+      // ]);
 
       // $aval = App\Avaliador::find(2);
       // $evento = App\Evento::find(1);
@@ -63,12 +63,12 @@ class AvaliadorSeeder extends Seeder
       // $aval->eventos()->attach($evento);
       // $aval->save();
 
-      $user_id = DB::table('users')->where('name','Avaliador4')->pluck('id');
+      // $user_id = DB::table('users')->where('name','Avaliador4')->pluck('id');
 
-      DB::table('avaliadors')->insert([
-        'user_id' => $user_id[0],
-        'area_id' => 1,
-        'tipo' => 'Interno',
-      ]);
+      // DB::table('avaliadors')->insert([
+      //   'user_id' => $user_id[0],
+      //   'area_id' => 1,
+      //   'tipo' => 'Interno',
+      // ]);
     }
 }
