@@ -142,12 +142,11 @@ class RegisterController extends Controller
             $participante->data_de_nascimento = $data['data_de_nascimento'];
             $participante->linkLattes = $data['linkLattes'];
 
-
             if ($data['outroCursoEstudante'] != null) {
                 $participante->curso = $data['outroCursoEstudante'];
             } else if (isset($data['cursoEstudante']) && $data['cursoEstudante'] != "Outro") {
                 $curso = Curso::where('id', $data['cursoEstudante'])->first();
-                $participante->curso = $curso;
+                $participante->curso_id = $curso;
             }
 
             $user->save();

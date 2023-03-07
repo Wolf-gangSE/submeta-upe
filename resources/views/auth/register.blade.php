@@ -91,7 +91,7 @@
                             <div class="col-md-12" id="displayOutro" style='display:none'>
                                 <div class="form-group">
                                     <label for="instituicao" class="col-form-label" style="font-weight:600;">{{ __('Digite a Instituição') }}<span style="color: red; font-weight:bold;">*</span></label>
-                                    <input id="instituicao" type="text" class="form-control @error('instituicao') is-invalid @enderror" name="instituicao" value="{{ old('instituicao') }}" placeholder="Digite o nome da Instituição" autocomplete="instituicao" autofocus>
+                                    <input id="instituicao" type="text" class="form-control @error('instituicao') is-invalid @enderror" name="instituicao" value="{{ old('instituicao') }}" placeholder="Digite o nome da Instituição" autofocus>
                                     @error('instituicao')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -285,7 +285,7 @@
                                     <select style="display: inline" class="form-control" id='cursoEstudante' name="cursoEstudante" onchange="outroCurso(this)" required>
                                         <option value="" disabled selected hidden>-- Selecione uma opção--</option>
                                         @foreach($cursos as $curso)
-                                        <option @if(old('cursoEstudante') == $curso->nome) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
+                                        <option @if(old('cursoEstudante') == $curso->id) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
                                         @endforeach
                                         <!-- <option @if((old('curso')) == 'Bacharelado em Agronomia' ) selected @endif value="Bacharelado em Agronomia">Bacharelado em Agronomia</option>
                                         <option @if((old('curso')) == 'Bacharelado em Ciência da Computação' ) selected @endif value="Bacharelado em Ciência da Computação">Bacharelado em Ciência da Computação</option>
@@ -624,6 +624,7 @@
         outroVinculo();
         mudarPerfil();
         showInstituicao();
+        outroCurso();
     }
     window.onload = onload();
 </script>
