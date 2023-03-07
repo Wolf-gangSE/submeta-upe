@@ -8,6 +8,7 @@ use App\Administrador;
 use Auth;
 use App\Area;
 use App\User;
+use App\Curso;
 use App\Evento;
 use App\AreaTematica;
 use App\Arquivo;
@@ -1684,6 +1685,7 @@ class TrabalhoController extends Controller
     {
         $projeto = Trabalho::find($request->projeto_id);
         $edital = Evento::find($projeto->evento_id);
+        $cursos = Curso::all();
 
         if(Auth::user()->id != $projeto->proponente->user->id){
             return redirect()->back();
@@ -1700,6 +1702,7 @@ class TrabalhoController extends Controller
             'estados' => $this->estados,
             'enum_turno' => Participante::ENUM_TURNO,
             'desligamentosProjeto' => $desligamentosProjeto,
+            'cursos' => $cursos
         ]);
     }
 

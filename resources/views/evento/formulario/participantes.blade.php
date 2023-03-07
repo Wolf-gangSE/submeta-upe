@@ -240,15 +240,12 @@
                                                                     </div>
                                                                     <div class="col-6">
                                                                         @component('componentes.input', ['label' => 'Curso'])
+                                                                        @php $cursos = App\Curso::all(); @endphp
                                                                         <select style="display: inline" class="form-control" name="curso[{{$i}}]" onchange="showCurso(this)">
                                                                             <option value="" disabled selected hidden>-- Selecione uma opção--</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Bacharelado em Agronomia' ) selected @endif value="Bacharelado em Agronomia">Bacharelado em Agronomia</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Bacharelado em Ciência da Computação' ) selected @endif value="Bacharelado em Ciência da Computação">Bacharelado em Ciência da Computação</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Bacharelado em Engenharia de Alimentos' ) selected @endif value="Bacharelado em Engenharia de Alimentos">Bacharelado em Engenharia de Alimentos</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Bacharelado em Medicina Veterinária' ) selected @endif value="Bacharelado em Medicina Veterinária">Bacharelado em Medicina Veterinária</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Bacharelado em Zootecnia' ) selected @endif value="Bacharelado em Zootecnia">Bacharelado em Zootecnia</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Licenciatura em Letras' ) selected @endif value="Licenciatura em Letras">Licenciatura em Letras</option>
-                                                                            <option @if((old('curso')[$i] ?? "" )=='Licenciatura em Pedagogia' ) selected @endif value="Licenciatura em Pedagogia">Licenciatura em Pedagogia</option>
+                                                                            @foreach($cursos as $curso)
+                                                                                <option @if((old('curso')[$i] ?? "" ) == $curso->nome) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
+                                                                            @endforeach
                                                                             <option @if((old('curso')[$i] ?? "" )=='Outro' ) selected @endif value="Outro">Outro</option>
                                                                         </select>
                                                                         @error('curso.'.$i)

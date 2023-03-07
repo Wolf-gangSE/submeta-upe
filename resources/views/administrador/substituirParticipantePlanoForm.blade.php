@@ -226,15 +226,12 @@
 
             <div class="col-6">
                 @component('componentes.input', ['label' => 'Curso'])
+                @php $cursos = App\Curso::all(); @endphp
                 <select style="display: inline" class="form-control" name="curso" onchange="showCurso(this)" id="cursoManter[{{$participante->id}}]" disabled>
                     <option value="" disabled selected hidden>-- Selecione uma opção--</option>
-                    <option value="Bacharelado em Agronomia">Bacharelado em Agronomia</option>
-                    <option value="Bacharelado em Ciência da Computação">Bacharelado em Ciência da Computação</option>
-                    <option value="Bacharelado em Engenharia de Alimentos">Bacharelado em Engenharia de Alimentos</option>
-                    <option value="Bacharelado em Medicina Veterinária">Bacharelado em Medicina Veterinária</option>
-                    <option value="Bacharelado em Zootecnia">Bacharelado em Zootecnia</option>
-                    <option value="Licenciatura em Letras">Licenciatura em Letras</option>
-                    <option value="Licenciatura em Pedagogia">Licenciatura em Pedagogia</option>
+                    @foreach($cursos as $curso)
+                        <option id="curso{{$curso->id}}" value="{{$curso->id}}">{{$curso->nome}}</option>
+                    @endforeach
                     <option value="Outro">Outro</option>
                 </select>
                 @error('curso')
