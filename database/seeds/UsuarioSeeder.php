@@ -34,15 +34,6 @@ class UsuarioSeeder extends Seeder
 
         // DB::table('users')->insert([
 
-        //   'name'=>'Lucas Henrique (ADM)',
-        //   'email'=>'lucas.henriquemonteiro@upe.br',
-        //   'password'=>Hash::make('12345678'),
-        //   'tipo'=>'administrador',
-        //   'email_verified_at'=>'2023-01-01'
-        // ]);
-
-        // DB::table('users')->insert([
-
         //   'name'=>'AdministradorResponsavel1',
         //   'email'=>'adminResp1@ufrpe.br',
         //   'password'=>Hash::make('12345678'),
