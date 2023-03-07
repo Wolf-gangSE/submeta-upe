@@ -9,7 +9,7 @@
 <p>
 	Agradecemos seu aceite para participar das avaliações da proposta {{$propostaTitulo}} de @if($natureza == '1') Ensino @elseif($natureza=='2') Pesquisa @elseif($natureza == '3') Extensão @endif
 	do {{$eventoTitulo}} da Universidade de Pernambuco (UPE).
-	<br><br>Solicitamos, gentilmente, que acesse o sistema Submeta através do <a href="{{ url('http://www.submeta.ufape.edu.br/') }}">LINK</a>, para realizar o seu login no sistema e dar seguimento na avaliação da proposta para aceite ou recusa da presente proposta.
+	<br><br>Solicitamos, gentilmente, que acesse o sistema Submeta através do <a href="{{ url('/') }}">LINK</a>, para realizar o seu login no sistema e dar seguimento na avaliação da proposta para aceite ou recusa da presente proposta.
 	
 	@if($acesso == '1' || $acesso == '3')
 		<br><br>Aproveitamos para enviar, em anexo, o formulário de avaliação que deverá ser anexado ao sistema com o seu parecer.
