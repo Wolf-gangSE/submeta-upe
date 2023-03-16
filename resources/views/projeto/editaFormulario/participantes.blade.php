@@ -428,7 +428,7 @@
                                                                                     selected
                                                                                     hidden>-- Selecione uma opção--</option>
                                                                                 @foreach($cursos as $curso)
-                                                                                    <option @if((old('curso')[$i] ?? "" ) == $curso->nome) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
+                                                                                    <option @if($participante->curso == $curso->id) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
                                                                                 @endforeach
                                                                                 <option
                                                                                     @if ((old('curso')[$i] ?? ($participante->curso ?? '')) == 'Outro') selected @endif
