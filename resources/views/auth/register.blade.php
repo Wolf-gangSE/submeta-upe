@@ -282,7 +282,7 @@
                             <div class="col-md-6">
                                 <div class="form-group" id="curso">
                                     @component('componentes.input', ['label' => 'Curso'])
-                                    <select style="display: inline" class="form-control" id='cursoEstudante' name="cursoEstudante" onchange="outroCurso(this)" required>
+                                    <select style="display: inline" class="form-control" id='cursoEstudante' name="cursoEstudante" onchange="outroCurso(this)">
                                         <option value="" disabled selected hidden>-- Selecione uma opção--</option>
                                         @foreach($cursos as $curso)
                                         <option @if(old('cursoEstudante') == $curso->id) selected @endif value="{{$curso->id}}">{{$curso->nome}}</option>
