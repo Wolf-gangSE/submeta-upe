@@ -42,6 +42,13 @@
 									  <div class="form-group">
 									    <label for="exampleFormControlSelect1">Recomendação: <strong>{{ $parecer->recomendacao }}</strong> </label>
 									  </div>
+                    @if ($parecer->parecer != null)
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Comentário: </label>
+                      <textarea class="form-control" id="comentario" name="comentario" rows="3" disabled>{{$trabalho->pivot->parecer}}</textarea>
+                    </div>
+                    @endif
+                  
                 </div>
               </div>
         </div>

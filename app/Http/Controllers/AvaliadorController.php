@@ -297,8 +297,11 @@ class AvaliadorController extends Controller
             ++$i; 
             
         }
-
-        $avaliador->trabalhos()->updateExistingPivot($trabalho->id,['status'=> 1, 'recomendacao'=>$request->recomendacao, 'created_at' => $data, 'pontuacao' => $pontuacao]);
+        if ($request->comentario){
+            $avaliador->trabalhos()->updateExistingPivot($trabalho->id,['status'=> 1, 'recomendacao'=>$request->recomendacao, 'created_at' => $data, 'pontuacao' => $pontuacao, 'parecer' => $request->comentario]);
+        } else {
+            $avaliador->trabalhos()->updateExistingPivot($trabalho->id,['status'=> 1, 'recomendacao'=>$request->recomendacao, 'created_at' => $data, 'pontuacao' => $pontuacao]);
+        }
 
         if ($trabalho->avaliadors()->where('status', 1)->count() == $trabalho->avaliadors()->count()) {
             $trabalho->status = "avaliado";
