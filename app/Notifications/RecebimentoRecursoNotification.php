@@ -65,7 +65,7 @@ class RecebimentoRecursoNotification extends Notification
         return (new MailMessage())
                     ->subject('Aviso de recurso - Sistema Submeta')
                     ->greeting('Saudações!')
-                    ->line("Prezado/a avaliador/a, a proposta de projeto intitulada {$this->titulo} recebeu recurso e está disponível para nova avaliação.")
+                    ->line("Prezado/a avaliador/a, a proposta de projeto intitulada {$this->titulo} teve recurso aprovado e está disponível para nova avaliação.")
                     ->action('Acessar', $this->url)
                     ->markdown('vendor.notifications.email');
     }
