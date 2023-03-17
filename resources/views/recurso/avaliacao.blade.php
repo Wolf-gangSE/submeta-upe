@@ -92,13 +92,20 @@
 														<input type="radio" class="input-group-text" value="reprovado" name="statusAvaliacao" accept=".pdf" id="statusAvaliacaoReprovado" @if($recurso->statusAvaliacao == "reprovado") checked @endif onchange="displayStatusAvaliacao('reprovado')"/>
 														<label for="statusAvaliacao" class="col-form-label">{{ __('Reprovado') }}</label>
 													</div>
-												</div>
-												@error('statusAvaliacao')
+													@error('statusAvaliacao')
 													<span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
 														<strong>{{ $message }}</strong>
 													</span>
-												@enderror
+													@enderror
 											</div>
+											<div class="row">
+												<a class="col-md-12 text-left"
+                           style="padding-left: 0px;color: #234B8B; font-weight: bold;">Justificativa <span style="color: red;">*</span></a>
+												<textarea class="col-md-12" id="justificativa" name="justificativa" minlength="20"
+																	style="border-radius:5px 5px 0 0;height: 71px;" required
+												></textarea>
+											</div>
+										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                             @if(($evento->inicio_recurso <= $hoje))
