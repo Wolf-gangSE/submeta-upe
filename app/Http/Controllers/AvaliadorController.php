@@ -20,9 +20,13 @@ use App\Evento;
 use App\Recomendacao;
 use App\User;
 use App\Avaliador;
+use App\Recurso;
+use App\Administrador;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\AvaliacaoDeRecurso;
+use Illuminate\Support\Facades\Notification;
 
 class AvaliadorController extends Controller
 {
@@ -239,6 +243,12 @@ class AvaliadorController extends Controller
             $trabalho->save();
         }
 
+        if ($request->recurso_id != null) {
+            $adm = Administrador::all()->first();
+            $admUser = User::find($adm->user_id);
+            Notification::send($admUser, new AvaliacaoDeRecurso($trabalho, $evento, $avaliador));
+        }
+
         return view('avaliador.listarTrabalhos', ['trabalhosEx'=>$trabalhosEx,'trabalhosIn'=>$trabalhosIn, 'trabalhos'=>$trabalhos, 'evento'=>$evento]);
     }
 
@@ -295,6 +305,12 @@ class AvaliadorController extends Controller
             $trabalho->save();
         }
 
+        if ($request->recurso_id != null) {
+            $adm = Administrador::all()->first();
+            $admUser = User::find($adm->user_id);
+            Notification::send($admUser, new AvaliacaoDeRecurso($trabalho, $evento, $avaliador));
+        }
+
         return redirect(route('avaliador.visualizarTrabalho', ['evento_id' => $evento->id]));
     }
 
@@ -325,6 +341,12 @@ class AvaliadorController extends Controller
         if ($trabalho->avaliadors()->where('status', 1)->count() == $trabalho->avaliadors()->count()) {
             $trabalho->status = "avaliado";
             $trabalho->save();
+        }
+
+        if ($request->recurso_id != null) {
+            $adm = Administrador::all()->first();
+            $admUser = User::find($adm->user_id);
+            Notification::send($admUser, new AvaliacaoDeRecurso($trabalho, $evento, $avaliador));
         }
         
         return redirect(route('avaliador.visualizarTrabalho', ['evento_id' => $evento->id]));
@@ -389,6 +411,12 @@ class AvaliadorController extends Controller
         if ($trabalho->avaliadors()->where('status', 1)->count() == $trabalho->avaliadors()->count()) { 
             $trabalho->status = "avaliado";
             $trabalho->save();
+        }
+
+        if ($request->recurso_id != null) {
+            $adm = Administrador::all()->first();
+            $admUser = User::find($adm->user_id);
+            Notification::send($admUser, new AvaliacaoDeRecurso($trabalho, $evento, $avaliador));
         }
     	
     	return redirect(route('avaliador.visualizarTrabalho', ['evento_id' => $evento->id]));

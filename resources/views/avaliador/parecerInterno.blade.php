@@ -98,6 +98,9 @@
 				<input type="hidden" name="trabalho_id" value="{{$trabalho->id}}" >
 				<input type="hidden" name="avaliador_id" value="{{Auth::user()->avaliadors->id}}" >
 				<input type="hidden" name="evento_id" value="{{$evento->id}}" >
+				if ($trabalho->recurso->first() && $trabalho->recurso->first()->statusAvaliacao == "aprovado")
+					<input type="hidden" name="recurso_id" value="{{$trabalho->recurso->first()->id}}" >
+				@endif
 
 				<h3>Informações do proponente</h3>
 				{{-- Coordenador  --}}
