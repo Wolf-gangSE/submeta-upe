@@ -11,6 +11,7 @@ use App\Administrador;
 use App\User;
 use App\Notifications\RecebimentoRecursoNotification;
 use App\Notifications\AprovacaoDeRecurso;
+use App\Notifications\ResultadoDoRecurso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -46,11 +47,17 @@ class RecursoController extends Controller
     public function avaliar(Request $request)
     {
         $recurso = Recurso::where('id', $request->recurso_id)->first();
-        $trabalho = Trabalho::where('id', $recurso->trabalhoId)->first();
+        $trabalho = Trabalho::where('id', $recurso->trabalhoId)->first();;
+        $proponenteUser = User::find($trabalho->proponente->user_id);
         $evento = $trabalho->evento;
         $avaliadores = Avaliador::whereHas('trabalhos', function ($query) use ($trabalho) {
             $query->where('trabalho_id', $trabalho->id);
         })->get();
+        
+        if ($request->justificativa != null) {
+            $trabalho->comentario = $request->justificativa;
+            $trabalho->save();
+        }
 
         $recurso['statusAvaliacao'] = $request->statusAvaliacao;
         $recurso->save();
@@ -71,6 +78,8 @@ class RecursoController extends Controller
                 Notification::send($userTemp, new RecebimentoRecursoNotification($userTemp, $trabalho, $avaliador->trabalhos()->where('trabalho_id', $trabalho->id)->first()->pivot->acesso, $evento->tipoAvaliacao));
             }
         }
+
+        Notification::send($proponenteUser, new ResultadoDoRecurso($trabalho, $evento, $request->statusAvaliacao));
 
         return redirect()->back();
     }
