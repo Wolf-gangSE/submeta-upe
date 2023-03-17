@@ -7,8 +7,10 @@ use App\Proponente;
 use App\Trabalho;
 use App\Notificacao;
 use App\Avaliador;
+use App\Administrador;
 use App\User;
 use App\Notifications\RecebimentoRecursoNotification;
+use App\Notifications\AprovacaoDeRecurso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -81,6 +83,8 @@ class RecursoController extends Controller
     public function create(Request $request)
     {
         $user_id = Auth()->user()->id;
+        $adm = Administrador::all()->first();
+        $admUser = User::find($adm->user_id);
         $proponente = Proponente::where('user_id', $user_id)->first();
         $trabalho = Trabalho::where('id', $request->trabalho_id)->first();
         $recurso = Recurso::where('trabalhoId', $request->trabalho_id)->first();
@@ -121,6 +125,8 @@ class RecursoController extends Controller
 
             $recurso->save();
         }
+
+        Notification::send($admUser, new AprovacaoDeRecurso($trabalho, $trabalho->evento));
 
         return redirect()->route('recurso.listar', ['id' => $trabalho->id]);
     }
