@@ -104,9 +104,7 @@ class EventoController extends Controller
             $request->fimSubmissao == null    ||
             $request->inicioRevisao == null   ||
             $request->fimRevisao == null      ||
-            $request->resultado == null       ||
-            $request->inicioProjeto == null   ||
-            $request->fimProjeto == null
+            $request->resultado == null
 
         ){
             $validatedData = $request->validate([
@@ -130,8 +128,6 @@ class EventoController extends Controller
                 'dt_inicioRelatorioFinal'  => $request->dt_inicioRelatorioFinal?['date']:[],
                 'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date']:[],
                 'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
-                'inicioProjeto'       => ['required', 'date'],
-                'fimProjeto'          => ['required', 'date'],
                 'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null), 'max:255'],
                 'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
                 'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
@@ -165,8 +161,6 @@ class EventoController extends Controller
             'dt_inicioRelatorioFinal'  => $request->dt_inicioRelatorioFinal?['date', 'after:dt_fimRelatorioParcial']:[],
             'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date', 'after_or_equal:dt_inicioRelatorioFinal']:[],
             'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
-            'inicioProjeto'       => ['required', 'date', 'after:yesterday'],
-            'fimProjeto'          => ['required', 'date', 'after_or_equal:fimSubmissao'],
             'pdfRecurso'        => [($request->pdfRecursoPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
             'modeloDocumento'   => [($request->modeloDocumentoPreenchido!=='sim'?'required':''), 'file', 'mimes:doc,docx,pdf', 'max:2048'],
             //'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
@@ -229,8 +223,6 @@ class EventoController extends Controller
         $evento['cotaDoutor']               = $request->has('cotaDoutor');
         $evento['obrigatoriedade_docExtra'] = $request->has('obrigatoriedade_docExtra');
         $evento['anexosStatus']        = 'final';
-        $evento['inicioProjeto']       = $request->inicioProjeto;
-        $evento['fimProjeto']          = $request->fimProjeto;
         $evento['tipoAvaliacao']       = $request->tipoAvaliacao;
         if($request->tipoAvaliacao == "link") {
             $evento['formAvaliacaoExterno'] = $request->link;
@@ -519,9 +511,7 @@ class EventoController extends Controller
             $request->fimSubmissao == null    ||
             $request->inicioRevisao == null   ||
             $request->fimRevisao == null      ||
-            $request->resultado == null       ||
-            $request->inicioProjeto == null   ||
-            $request->fimProjeto == null
+            $request->resultado == null
 
         ){
             $validatedData = $request->validate([
@@ -546,8 +536,6 @@ class EventoController extends Controller
                 'pdfEdital'           => ['file', 'mimes:pdf', 'max:2048'],
                 'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
                 'pdfFormAvalRelatorio'           => ['file', 'mimes:pdf', 'max:2048'],
-                'inicioProjeto'       => ['required', 'date'],
-                'fimProjeto'          => ['required', 'date'],
                 'docTutorial'     => ['file', 'mimes:zip,doc,docx,pdf', 'max:2048'],
                 'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null), 'max:255'],
                 'pdfRelatorio'      => ['file', 'mimes:pdf', 'max:2048'],
@@ -577,8 +565,6 @@ class EventoController extends Controller
             'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date', 'after_or_equal:dt_inicioRelatorioFinal']:[],
             'modeloDocumento'     => ['file', 'mimes:doc,docx,odt,pdf', 'max:2048'],
             'pdfFormAvalExterno'           => ['file', 'mimes:pdf,doc,docx,xlsx,xls,csv,zip', 'max:2048'],
-            'inicioProjeto'       => ['required', 'date', 'after:resultado_final'],
-            'fimProjeto'          => ['required', 'date', 'after:inicioProjeto'],
             'docTutorial'     => ['file', 'mimes:zip,doc,docx,pdf', 'max:2048'],
             'nome_docExtra'       => [Rule::requiredIf($request->check_docExtra != null) , 'max:255'],
             'pdfRelatorio'      => ['file', 'mimes:doc,docx,pdf', 'max:2048'],
@@ -640,8 +626,6 @@ class EventoController extends Controller
         $evento->consu                = $request->has('consu');
         $evento->cotaDoutor                = $request->has('cotaDoutor');
         $evento->obrigatoriedade_docExtra                = $request->has('obrigatoriedade_docExtra');
-        $evento->inicioProjeto       = $request->inicioProjeto;
-        $evento->fimProjeto          = $request->fimProjeto;
         $evento->tipoAvaliacao       = $request->tipoAvaliacao;
         if($request->tipoAvaliacao == "link") {
             $evento->formAvaliacaoExterno = $request->link;

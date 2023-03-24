@@ -322,30 +322,6 @@
             </div>
         </div>
 
-        <!-- AKI -->
-        <div class="row justify-content-left">
-            <div class="col-sm-6">
-                <label for="inicioProjeto" class="col-form-label">{{ __('Início do Projeto:') }}<span style="color: red; font-weight: bold;">*</span></label>
-                <input id="inicioProjeto" type="date" value="{{ $evento->inicioProjeto }}" class="form-control @error('inicioProjeto') is-invalid @enderror" name="inicioProjeto" value="{{ old('inicioProjeto') }}" required autocomplete="inicioProjeto" autofocus>
-
-                @error('inicioProjeto')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message . date('d/m/Y', strtotime($ontem ?? '')) . '.' }}</strong>
-                </span>
-                @enderror
-            </div>
-
-            <div class="col-sm-6">
-                <label for="fimProjeto" class="col-form-label">{{ __('Fim do Projeto:') }}<span style="color: red; font-weight: bold;">*</span></label>
-                <input id="fimProjeto" type="date" value="{{ $evento->fimProjeto }}" class="form-control @error('fimProjeto') is-invalid @enderror" name="fimProjeto" value="{{ old('fimProjeto') }}" required autocomplete="fimProjeto" autofocus>
-
-                @error('fimProjeto')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message . date('d/m/Y', strtotime($ontem ?? '')) . '.' }}</strong>
-                </span>
-                @enderror
-            </div>
-        </div>
 
         <hr>
         <div class="row subtitulo">
