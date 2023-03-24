@@ -42,9 +42,11 @@
         @endcomponent
       @endif
 
-      @component('projeto.formularioVisualizar.relatorio',['edital' => $edital,'projeto' => $projeto,'flagSubstituicao' =>$flagSubstituicao,
-                                                           'AvalRelatParcial' => $AvalRelatParcial, 'AvalRelatFinal' => $AvalRelatFinal, 'cont' => 0])
-      @endcomponent
+      @if ($edital->dt_fimRelatorioParcial != null && $edital->dt_fimRelatorioFinal != null && $edital->dt_inicioRelatorioParcial != null && $edital->dt_inicioRelatorioFinal != null)
+        @component('projeto.formularioVisualizar.relatorio',['edital' => $edital,'projeto' => $projeto,'flagSubstituicao' =>$flagSubstituicao,
+                                                            'AvalRelatParcial' => $AvalRelatParcial, 'AvalRelatFinal' => $AvalRelatFinal, 'cont' => 0])
+        @endcomponent
+      @endif
 
       @component('projeto.formularioVisualizar.resultado2',
                     ['projeto' => $projeto])

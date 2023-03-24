@@ -356,47 +356,43 @@
         <div class="row justify-content-left">
             <div class="col-sm-6">
 
-                @component('componentes.input', ['label' => 'Início do Relatório Parcial:'])
-                <input id="dt_inicioRelatorioParcial" type="date" value="{{ $evento->dt_inicioRelatorioParcial }}" class="form-control @error('dt_inicioRelatorioParcial') is-invalid @enderror" name="dt_inicioRelatorioParcial" value="{{ old('dt_inicioRelatorioParcial') }}" required autocomplete="dt_inicioRelatorioParcial" autofocus title="Início para o período do envio do relatório parcial">
+                <label for="dt_inicioRelatorioParcial" class="col-form-label">{{ __('Início do Relatório Parcial:') }}</label>
+                <input id="dt_inicioRelatorioParcial" type="date" value="{{ $evento->dt_inicioRelatorioParcial }}" class="form-control @error('dt_inicioRelatorioParcial') is-invalid @enderror" name="dt_inicioRelatorioParcial" value="{{ old('dt_inicioRelatorioParcial') }}" autocomplete="dt_inicioRelatorioParcial" autofocus title="Início para o período do envio do relatório parcial">
                 @error('dt_inicioRelatorioParcial')
                 <span class="invalid-feedback" role="alert">
                     <strong>Apenas será aceita data posterior ao dia do Resultado Final ({{date('d/m/Y', strtotime($evento->resultado_final ?? ''))}})</strong>
                 </span>
                 @enderror
-                @endcomponent
             </div>
             <div class="col-sm-6">
 
-                @component('componentes.input', ['label' => 'Fim do Relatório Parcial:'])
-                <input id="dt_fimRelatorioParcial" type="date" value="{{ $evento->dt_fimRelatorioParcial }}" class="form-control @error('dt_fimRelatorioParcial') is-invalid @enderror" name="dt_fimRelatorioParcial" value="{{ old('dt_fimRelatorioParcial') }}" required autocomplete="dt_fimRelatorioParcial" autofocus title="Final do período do envio do relatório parcial">
+                <label for="dt_fimRelatorioParcial" class="col-form-label">{{ __('Fim do Relatório Parcial:') }}</label>
+                <input id="dt_fimRelatorioParcial" type="date" value="{{ $evento->dt_fimRelatorioParcial }}" class="form-control @error('dt_fimRelatorioParcial') is-invalid @enderror" name="dt_fimRelatorioParcial" value="{{ old('dt_fimRelatorioParcial') }}" autocomplete="dt_fimRelatorioParcial" autofocus title="Final do período do envio do relatório parcial">
                 @error('dt_fimRelatorioParcial')
                 <span class="invalid-feedback" role="alert">
                     <strong>A data deve ser igual ou posterior a data de início do Relatório Parcial ({{date('d/m/Y', strtotime($evento->dt_inicioRelatorioParcial ?? ''))}})</strong>
                 </span>
                 @enderror
-                @endcomponent
             </div>
             <div class="col-sm-6">
 
-                @component('componentes.input', ['label' => 'Início do Relatório Final:'])
-                <input id="dt_inicioRelatorioFinal" type="date" value="{{ $evento->dt_inicioRelatorioFinal }}" class="form-control @error('dt_inicioRelatorioFinal') is-invalid @enderror" name="dt_inicioRelatorioFinal" value="{{ old('dt_inicioRelatorioFinal') }}" required autocomplete="dt_inicioRelatorioFinal" autofocus title="Início para o período do envio do relatório final">
+                <label for="dt_inicioRelatorioFinal" class="col-form-label">{{ __('Início do Relatório Final:') }}</label>
+                <input id="dt_inicioRelatorioFinal" type="date" value="{{ $evento->dt_inicioRelatorioFinal }}" class="form-control @error('dt_inicioRelatorioFinal') is-invalid @enderror" name="dt_inicioRelatorioFinal" value="{{ old('dt_inicioRelatorioFinal') }}" autocomplete="dt_inicioRelatorioFinal" autofocus title="Início para o período do envio do relatório final">
                 @error('dt_inicioRelatorioFinal')
                 <span class="invalid-feedback" role="alert">
                     <strong>Apenas será aceita data posterior ao fim do Relatório Parcial ({{date('d/m/Y', strtotime($evento->dt_fimRelatorioParcial ?? ''))}})</strong>
                 </span>
                 @enderror
-                @endcomponent
             </div>
             <div class="col-sm-6">
 
-                @component('componentes.input', ['label' => 'Fim do Relatório Final:'])
-                <input id="dt_fimRelatorioFinal" type="date" value="{{ $evento->dt_fimRelatorioFinal }}" class="form-control @error('dt_fimRelatorioFinal') is-invalid @enderror" name="dt_fimRelatorioFinal" value="{{ old('dt_fimRelatorioFinal') }}" required autocomplete="dt_fimRelatorioFinal" autofocus title="Final do período do envio do relatório final">
+                <label for="dt_fimRelatorioFinal" class="col-form-label">{{ __('Fim do Relatório Final:') }}</label>
+                <input id="dt_fimRelatorioFinal" type="date" value="{{ $evento->dt_fimRelatorioFinal }}" class="form-control @error('dt_fimRelatorioFinal') is-invalid @enderror" name="dt_fimRelatorioFinal" value="{{ old('dt_fimRelatorioFinal') }}"  autocomplete="dt_fimRelatorioFinal" autofocus title="Final do período do envio do relatório final">
                 @error('dt_fimRelatorioFinal')
                 <span class="invalid-feedback" role="alert">
                     <strong>A data deve ser igual ou posterior a data de início do Relatório Final ({{date('d/m/Y', strtotime($evento->dt_inicioRelatorioFinal ?? ''))}})</strong>
                 </span>
                 @enderror
-                @endcomponent
             </div>
         </div>
 

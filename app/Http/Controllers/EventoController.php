@@ -125,10 +125,10 @@ class EventoController extends Controller
                 'fim_recurso'         => ['required', 'date'],
                 'resultado_final'     => ['required', 'date'],
                 'resultado_preliminar'=> ['required', 'date'],
-                'dt_inicioRelatorioParcial'  => ['required', 'date'],
-                'dt_fimRelatorioParcial'     => ['required', 'date'],
-                'dt_inicioRelatorioFinal'  => ['required', 'date'],
-                'dt_fimRelatorioFinal'     => ['required', 'date'],
+                'dt_inicioRelatorioParcial'  => $request->dt_inicioRelatorioParcial?['date']:[],
+                'dt_fimRelatorioParcial'     => $request->dt_fimRelatorioParcial?['date']:[],
+                'dt_inicioRelatorioFinal'  => $request->dt_inicioRelatorioFinal?['date']:[],
+                'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date']:[],
                 'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
                 'inicioProjeto'       => ['required', 'date'],
                 'fimProjeto'          => ['required', 'date'],
@@ -160,10 +160,10 @@ class EventoController extends Controller
             'inicio_recurso'      => ['required', 'date', 'after_or_equal:resultado_preliminar'],
             'fim_recurso'         => ['required', 'date', 'after:inicio_recurso'],
             'resultado_final'     => ['required', 'date', 'after:fim_recurso'],
-            'dt_inicioRelatorioParcial'  => ['required', 'date', 'after:resultado_final'],
-            'dt_fimRelatorioParcial'     => ['required', 'date', 'after_or_equal:dt_inicioRelatorioParcial'],
-            'dt_inicioRelatorioFinal'  => ['required', 'date', 'after:dt_fimRelatorioParcial'],
-            'dt_fimRelatorioFinal'     => ['required', 'date', 'after_or_equal:dt_inicioRelatorioFinal'],
+            'dt_inicioRelatorioParcial'  => $request->dt_inicioRelatorioParcial?['date', 'after:resultado_preliminar']:[],
+            'dt_fimRelatorioParcial'     => $request->dt_fimRelatorioParcial?['date', 'after_or_equal:dt_inicioRelatorioParcial']:[],
+            'dt_inicioRelatorioFinal'  => $request->dt_inicioRelatorioFinal?['date', 'after:dt_fimRelatorioParcial']:[],
+            'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date', 'after_or_equal:dt_inicioRelatorioFinal']:[],
             'pdfEdital'           => [($request->pdfEditalPreenchido!=='sim'?'required':''), 'file', 'mimes:pdf', 'max:2048'],
             'inicioProjeto'       => ['required', 'date', 'after:yesterday'],
             'fimProjeto'          => ['required', 'date', 'after_or_equal:fimSubmissao'],
@@ -210,10 +210,18 @@ class EventoController extends Controller
         $evento['fim_recurso']         = $request->fim_recurso;
         $evento['resultado_preliminar']= $request->resultado_preliminar;
         $evento['resultado_final']     = $request->resultado_final;
-        $evento['dt_inicioRelatorioParcial']  = $request->dt_inicioRelatorioParcial;
-        $evento['dt_fimRelatorioParcial']     = $request->dt_fimRelatorioParcial;
-        $evento['dt_inicioRelatorioFinal']  = $request->dt_inicioRelatorioFinal;
-        $evento['dt_fimRelatorioFinal']     = $request->dt_fimRelatorioFinal;
+        if ($request->dt_inicioRelatorioParcial) {
+            $evento['dt_inicioRelatorioParcial']  = $request->dt_inicioRelatorioParcial;
+        }
+        if ($request->dt_fimRelatorioParcial) {
+            $evento['dt_fimRelatorioParcial']     = $request->dt_fimRelatorioParcial;
+        }
+        if ($request->dt_inicioRelatorioFinal) {
+            $evento['dt_inicioRelatorioFinal']  = $request->dt_inicioRelatorioFinal;
+        }
+        if ($request->dt_fimRelatorioFinal) {
+            $evento['dt_fimRelatorioFinal']     = $request->dt_fimRelatorioFinal;
+        }
         $evento['coordenadorId']       = $request->coordenador_id;
         $evento['criador_id']          = $user_id;
         $evento['numParticipantes']    = $request->numParticipantes;
@@ -531,10 +539,10 @@ class EventoController extends Controller
                 'inicio_recurso'      => ['required', 'date'],
                 'fim_recurso'         => ['required', 'date'],
                 'resultado_final'     => ['required', 'date'],
-                'dt_inicioRelatorioParcial'  => ['required', 'date'],
-                'dt_fimRelatorioParcial'     => ['required', 'date'],
-                'dt_inicioRelatorioFinal'  => ['required', 'date'],
-                'dt_fimRelatorioFinal'     => ['required', 'date'],
+                'dt_inicioRelatorioParcial'  => $request->dt_inicioRelatorioParcial?['date']:[],
+                'dt_fimRelatorioParcial'     => $request->dt_fimRelatorioParcial?['date']:[],
+                'dt_inicioRelatorioFinal'  => $request->dt_inicioRelatorioFinal?['date']:[],
+                'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date']:[],
                 'pdfEdital'           => ['file', 'mimes:pdf', 'max:2048'],
                 'modeloDocumento'     => ['file', 'mimes:zip,doc,docx,odt,pdf', 'max:2048'],
                 'pdfFormAvalRelatorio'           => ['file', 'mimes:pdf', 'max:2048'],
@@ -563,10 +571,10 @@ class EventoController extends Controller
             'inicio_recurso'      => ['required', 'date', 'after_or_equal:resultado_preliminar'],
             'fim_recurso'         => ['required', 'date', 'after:inicio_recurso'],
             'resultado_final'     => ['required', 'date', 'after:fim_recurso'],
-            'dt_inicioRelatorioParcial'  => ['required', 'date', 'after:resultado_final'],
-            'dt_fimRelatorioParcial'     => ['required', 'date', 'after_or_equal:dt_inicioRelatorioParcial'],
-            'dt_inicioRelatorioFinal'  => ['required', 'date', 'after:dt_fimRelatorioParcial'],
-            'dt_fimRelatorioFinal'     => ['required', 'date', 'after_or_equal:dt_inicioRelatorioFinal'],
+            'dt_inicioRelatorioParcial'  => $request->dt_inicioRelatorioParcial?['date', 'after:resultado_final']:[],
+            'dt_fimRelatorioParcial'     => $request->dt_fimRelatorioParcial?['date', 'after_or_equal:dt_inicioRelatorioParcial']:[],
+            'dt_inicioRelatorioFinal'  => $request->dt_inicioRelatorioFinal?['date', 'after:dt_fimRelatorioParcial']:[],
+            'dt_fimRelatorioFinal'     => $request->dt_fimRelatorioFinal?['date', 'after_or_equal:dt_inicioRelatorioFinal']:[],
             'modeloDocumento'     => ['file', 'mimes:doc,docx,odt,pdf', 'max:2048'],
             'pdfFormAvalExterno'           => ['file', 'mimes:pdf,doc,docx,xlsx,xls,csv,zip', 'max:2048'],
             'inicioProjeto'       => ['required', 'date', 'after:resultado_final'],
@@ -616,10 +624,18 @@ class EventoController extends Controller
         $evento->fim_recurso          = $request->fim_recurso;
         $evento->resultado_preliminar = $request->resultado_preliminar;
         $evento->resultado_final      = $request->resultado_final;
-        $evento->dt_inicioRelatorioParcial   = $request->dt_inicioRelatorioParcial;
-        $evento->dt_fimRelatorioParcial      = $request->dt_fimRelatorioParcial;
-        $evento->dt_inicioRelatorioFinal   = $request->dt_inicioRelatorioFinal;
-        $evento->dt_fimRelatorioFinal      = $request->dt_fimRelatorioFinal;
+        if ($request->dt_inicioRelatorioParcial) {
+            $evento->dt_inicioRelatorioParcial = $request->dt_inicioRelatorioParcial;
+        }
+        if ($request->dt_fimRelatorioParcial) {
+            $evento->dt_fimRelatorioParcial = $request->dt_fimRelatorioParcial;
+        }
+        if ($request->dt_inicioRelatorioFinal) {
+            $evento->dt_inicioRelatorioFinal = $request->dt_inicioRelatorioFinal;
+        }
+        if ($request->dt_fimRelatorioFinal) {
+            $evento->dt_fimRelatorioFinal = $request->dt_fimRelatorioFinal;
+        }
         $evento->coordenadorId        = $request->coordenador_id;
         $evento->consu                = $request->has('consu');
         $evento->cotaDoutor                = $request->has('cotaDoutor');

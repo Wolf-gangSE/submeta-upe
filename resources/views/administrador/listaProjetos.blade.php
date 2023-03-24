@@ -227,6 +227,7 @@
                                 </div>
                               @endif
                             @endforeach
+                            @if ($evento->dt_fimRelatorioParcial != null && $evento->dt_fimRelatorioFinal != null && $evento->dt_inicioRelatorioParcial != null && $evento->dt_inicioRelatorioFinal != null)
                             <h5>Relatórios</h5>
                             <div class="row">
                               <div class="col-sm-12">
@@ -265,6 +266,7 @@
                                 </div>
                               </div>
                             </div>
+                            @endif
                           </div>
                           {{-- @endif --}}
                           {{-- @endforeach --}}

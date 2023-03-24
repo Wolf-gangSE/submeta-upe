@@ -540,6 +540,7 @@
     </div>
 
     <!--Relatórios-->
+    @if ($evento->dt_fimRelatorioParcial != null && $evento->dt_fimRelatorioFinal != null && $evento->dt_inicioRelatorioParcial != null && $evento->dt_inicioRelatorioFinal != null)
     <div class="row justify-content-center" style="margin-top: 20px;">
         <div class="col-md-12">
             <div class="card" style="border-radius: 5px">
@@ -901,6 +902,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <!--Avaliadores-->
     <div class="row justify-content-center" style="margin-top: 20px;">
